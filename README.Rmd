@@ -1,0 +1,76 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# triptych : Diagnostic Graphics to Evaluate Forecast Performance
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![CRAN status](https://www.r-pkg.org/badges/version/triptych)](https://CRAN.R-project.org/package=triptych)
+<!-- badges: end -->
+
+Overall predictive performance is measured by a mean score (or loss), which decomposes into miscalibration, discrimination, and uncertainty components.
+The main focus is visualization of these distinct and complementary aspects in joint displays. See Dimitriadis, Gneiting, Jordan, Vogel (2023) [arXiv:2301.10803](https://arxiv.org/abs/2301.10803).
+
+## Installation
+
+(Soon) Install the latest release of triptych from CRAN with:
+
+``` r
+install.packages("triptych")
+```
+
+
+Install the development version of triptych with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("aijordan/triptych")
+```
+
+## Example
+
+```{r example_triptych, fig.width = 10, fig.height = 4}
+library(triptych)
+
+# Predictions and observations
+set.seed(20230817)
+predictions <- matrix(runif(1000), ncol = 10)
+colnames(predictions) <- sprintf("Method_%02i", 1:10)
+observations <- rbinom(100, 1, predictions[, 1])
+
+# Construct and inspect
+tr <- triptych(predictions, observations)
+tr
+class(tr)
+
+# 1. Choose 4 predictions
+# 2. Add consistency bands (for reliability curves)
+# 3. Create patchwork object
+# 4. Adjust the title of the legend
+dplyr::slice_head(tr, n = 4) |>
+  add_consistency(level = 0.9, n_boot = 100) |>
+  autoplot() &
+  ggplot2::guides(colour = ggplot2::guide_legend("Predictions"))
+```
+
+```{r example_MCBDSC, out.width = "50%", fig.align="center", fig.height = 6, fig.width = 6}
+# From already computed triptych
+estimates(tr$mcbdsc)
+autoplot(tr$mcbdsc)
+
+# Or standalone:
+# mcbdsc(predictions, observations) |> autoplot()
+# mcbdsc(predictions, observations) |> estimates()
+```
