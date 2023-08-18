@@ -10,7 +10,7 @@ reliability(x, y = NULL, ...)
 as_reliability(x, r)
 }
 \arguments{
-\item{x}{A data frame, list, matrix, or other object that can be coerced to a tibble. Contains numeric predictions.}
+\item{x}{A data frame, list, matrix, or other object that can be coerced to a tibble. Contains numeric forecasts.}
 
 \item{y}{A numeric vector of observations. If missing, a column with name "y" must be present in the tibble coerced from \code{x}.}
 
@@ -20,15 +20,15 @@ as_reliability(x, r)
 }
 \value{
 A \code{triptych_reliability} object, that is a \code{vctrs_vctr} subclass, and has
-a length equal to number of prediction methods supplied in \code{x}. Each entry
-is named according to the corresponding prediction method,
+a length equal to number of forecasting methods supplied in \code{x}. Each entry
+is named according to the corresponding forecasting method,
 and contains a list of named objects:
 \itemize{
 \item \code{estimate}: A data frame with the isotonic regression estimate.
 \item \code{region}: Either an empty list, or a data frame of pointwise consistency
 or confidence intervals
 added by \code{\link[=add_consistency]{add_consistency()}} or \code{\link[=add_confidence]{add_confidence()}}, respectively.
-\item \code{x}: The numeric vector of original predictions.
+\item \code{x}: The numeric vector of original forecasts.
 Access is most convenient through \code{\link[=estimates]{estimates()}}, \code{\link[=regions]{regions()}}, and \code{\link[=forecasts]{forecasts()}}.
 }
 }
@@ -38,10 +38,10 @@ conditional event probability against the forecast value.
 }
 \examples{
 # Construction
-predictions <- matrix(runif(300), ncol = 3)
-colnames(predictions) <- c("Method_1", "Method_2", "Method_3")
-observations <- rbinom(100, 1, predictions[, 1])
-rel1 <- reliability(predictions, observations)
+forecasts <- matrix(runif(300), ncol = 3)
+colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
+observations <- rbinom(100, 1, forecasts[, 1])
+rel1 <- reliability(forecasts, observations)
 
 pred_obs <- tibble::tibble(M1 = runif(100), y = rbinom(100, 1, M1))
 rel2 <- reliability(pred_obs)

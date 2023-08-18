@@ -3,7 +3,7 @@
 #' A score decomposition splits the mean score into the three components of
 #' miscalibration (MCB), discrimination (DSC), and uncertainty (UNC). Plotting
 #' the DSC component against the MCB component allows for a quick visual
-#' inspection of predictive performance for many prediction methods.
+#' inspection of predictive performance for many forecasting methods.
 #'
 #' @param score A string specifying the score function.
 #'   One of: `"Brier_score"` (default), `"log_score"`, `"MR_score"`.
@@ -11,13 +11,13 @@
 #' @inheritParams triptych
 #'
 #' @return A `triptych_mcbdsc` object, that is a `vctrs_vctr` subclass, and has
-#'   a length equal to number of prediction methods supplied in `x`. Each entry
-#'   is named according to the corresponding prediction method,
+#'   a length equal to number of forecasting methods supplied in `x`. Each entry
+#'   is named according to the corresponding forecasting method,
 #'   and contains a list of named objects:
 #'   * `estimate`: A data frame of the score decomposition.
 #'   * `region`: Either an empty list, or a (yet to be determined) object added
 #'     by [add_confidence()].
-#'   * `x`: The numeric vector of original predictions.
+#'   * `x`: The numeric vector of original forecasts.
 #'   Access is most convenient through [estimates()], [regions()], and [forecasts()].
 #'
 #' @seealso Accessors: [estimates()], [regions()], [forecasts()]
@@ -28,10 +28,10 @@
 #'
 #' @examples
 #' # Construction
-#' predictions <- matrix(runif(300), ncol = 3)
-#' colnames(predictions) <- c("Method_1", "Method_2", "Method_3")
-#' observations <- rbinom(100, 1, predictions[, 1])
-#' md1 <- mcbdsc(predictions, observations)
+#' forecasts <- matrix(runif(300), ncol = 3)
+#' colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
+#' observations <- rbinom(100, 1, forecasts[, 1])
+#' md1 <- mcbdsc(forecasts, observations)
 #'
 #' pred_obs <- tibble::tibble(M1 = runif(100), y = rbinom(100, 1, M1))
 #' md2 <- mcbdsc(pred_obs)

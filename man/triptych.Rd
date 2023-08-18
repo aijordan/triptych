@@ -7,7 +7,7 @@
 triptych(x, y = NULL, ...)
 }
 \arguments{
-\item{x}{A data frame, list, matrix, or other object that can be coerced to a tibble. Contains numeric predictions.}
+\item{x}{A data frame, list, matrix, or other object that can be coerced to a tibble. Contains numeric forecasts.}
 
 \item{y}{A numeric vector of observations. If missing, a column with name "y" must be present in the tibble coerced from \code{x}.}
 
@@ -31,10 +31,10 @@ The \code{triptych} S3 class has plotting methods for \code{ggplot2}.
 }
 \examples{
 # Construction
-predictions <- matrix(runif(300), ncol = 3)
-colnames(predictions) <- c("Method_1", "Method_2", "Method_3")
-observations <- rbinom(100, 1, predictions[, 1])
-tr <- triptych(predictions, observations)
+forecasts <- matrix(runif(300), ncol = 3)
+colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
+observations <- rbinom(100, 1, forecasts[, 1])
+tr <- triptych(forecasts, observations)
 
 pred_obs <- tibble::tibble(M1 = runif(100), y = rbinom(100, 1, M1))
 tr <- triptych(pred_obs)

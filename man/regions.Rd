@@ -28,7 +28,7 @@ regions(x, ...)
 A tibble with the relevant information for the
 uncertainty quantification of the chosen diagnostic
 (Murphy curve, reliability curve, ROC curve, score decomposition)
-for all supplied prediction methods.
+for all supplied forecasting methods.
 }
 \description{
 Accessing confidence/consistency region data

@@ -22,7 +22,7 @@ NULL
 #' A tibble with the relevant information describing
 #'   the diagnostic estimate
 #'   (Murphy curve, reliability curve, ROC curve, score decomposition)
-#'   for all supplied prediction methods.
+#'   for all supplied forecasting methods.
 #'
 #' @seealso [regions()], [forecasts()], [observations()]
 #' @export
@@ -39,7 +39,7 @@ estimates <- function(x, at, ...) {
 #' A tibble with the relevant information for the
 #'   uncertainty quantification of the chosen diagnostic
 #'   (Murphy curve, reliability curve, ROC curve, score decomposition)
-#'   for all supplied prediction methods.
+#'   for all supplied forecasting methods.
 #'
 #' @seealso [estimates()], [forecasts()], [observations()]
 #' @export

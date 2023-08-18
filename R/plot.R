@@ -15,10 +15,10 @@
 #' That is, it always draws a plot, even during assignment or within a loop.
 #'
 #' @examples
-#' predictions <- matrix(runif(300), ncol = 3)
-#' colnames(predictions) <- c("Method_1", "Method_2", "Method_3")
-#' observations <- rbinom(100, 1, predictions[, 1])
-#' tr <- triptych(predictions, observations)
+#' forecasts <- matrix(runif(300), ncol = 3)
+#' colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
+#' observations <- rbinom(100, 1, forecasts[, 1])
+#' tr <- triptych(forecasts, observations)
 #'
 #' autoplot(tr)
 #' autoplot(tr$murphy)

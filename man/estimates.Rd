@@ -33,7 +33,7 @@ to determine the diagonal lines along which to determine the estimate.}
 A tibble with the relevant information describing
 the diagnostic estimate
 (Murphy curve, reliability curve, ROC curve, score decomposition)
-for all supplied prediction methods.
+for all supplied forecasting methods.
 }
 \description{
 Accessing diagnostic estimate data

@@ -3,20 +3,20 @@
 #' A ROC curve visualizes discrimination ability by displaying the hit rate against
 #' the false alarm rate for all threshold values.
 #'
-#' @param convex A boolean value indicating whether to calculate the convex hull
+#' @param concave A boolean value indicating whether to calculate the concave hull
 #'   or the raw ROC diagnostic.
 #' @param ... Unused.
 #' @inheritParams triptych
 #'
 #' @return A `triptych_roc` object, that is a `vctrs_vctr` subclass, and has
-#'   a length equal to number of prediction methods supplied in `x`. Each entry
-#'   is named according to the corresponding prediction method,
+#'   a length equal to number of forecasting methods supplied in `x`. Each entry
+#'   is named according to the corresponding forecasting method,
 #'   and contains a list of named objects:
 #'   * `estimate`: A data frame of hit rates and false rates.
 #'   * `region`: Either an empty list, or a data frame of pointwise
 #'       confidence intervals (along diagonal lines with slope \eqn{-\pi_0/\pi_1})
 #'       added by [add_confidence()].
-#'   * `x`: The numeric vector of original predictions.
+#'   * `x`: The numeric vector of original forecasts.
 #'   Access is most convenient through [estimates()], [regions()], and [forecasts()].
 #'
 #' @seealso Accessors: [estimates()], [regions()], [forecasts()]
@@ -27,10 +27,10 @@
 #'
 #' @examples
 #' # Construction
-#' predictions <- matrix(runif(300), ncol = 3)
-#' colnames(predictions) <- c("Method_1", "Method_2", "Method_3")
-#' observations <- rbinom(100, 1, predictions[, 1])
-#' roc1 <- roc(predictions, observations)
+#' forecasts <- matrix(runif(300), ncol = 3)
+#' colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
+#' observations <- rbinom(100, 1, forecasts[, 1])
+#' roc1 <- roc(forecasts, observations)
 #'
 #' pred_obs <- tibble::tibble(M1 = runif(100), y = rbinom(100, 1, M1))
 #' roc2 <- roc(pred_obs)
@@ -50,7 +50,7 @@ NULL
 
 #' @rdname roc
 #' @export
-roc <- function(x, y = NULL, convex = TRUE, ...) {
+roc <- function(x, y = NULL, concave = TRUE, ...) {
   x <- tibble::as_tibble(x)
   if (is.null(y)) {
     stopifnot("y" %in% names(x))
@@ -58,14 +58,14 @@ roc <- function(x, y = NULL, convex = TRUE, ...) {
     x <- dplyr::select(x, !y)
   }
   y <- vec_cast(y, to = double())
-  convex <- vec_cast(convex, to = logical())
-  stopifnot(identical(length(convex), 1L))
+  concave <- vec_cast(concave, to = logical())
+  stopifnot(identical(length(concave), 1L))
   x <- dplyr::mutate_all(x, vec_cast, to = double())
-  vec_cast(x, to = new_triptych_roc(y = y, convex = convex))
+  vec_cast(x, to = new_triptych_roc(y = y, concave = concave))
 }
 
-new_triptych_roc <- function(x = list(), y = numeric(), convex = logical()) {
-  new_vctr(x, y = y, convex = convex, class = "triptych_roc")
+new_triptych_roc <- function(x = list(), y = numeric(), concave = logical()) {
+  new_vctr(x, y = y, concave = concave, class = "triptych_roc")
 }
 
 # formatting
@@ -94,7 +94,7 @@ vec_ptype2.triptych_roc.triptych_roc <- function(x, y, ..., x_arg = "", y_arg = 
       details = "Observations are not compatible."
     )
   }
-  new_triptych_roc(list(), observations(x), attr(x, "convex"))
+  new_triptych_roc(list(), observations(x), attr(x, "concave"))
 }
 
 # casting
@@ -147,8 +147,8 @@ vec_cast.triptych_roc.tbl_df <- function(x, to, ...) {
 #' @export
 vec_cast.triptych_roc.double <- function(x, to, ...) {
   y <- observations(to)
-  convex <- attr(to, "convex")
-  xr <- if (convex) recalibrate_mean(x, y) else x
+  concave <- attr(to, "concave")
+  xr <- if (concave) recalibrate_mean(x, y) else x
 
   list(
     estimate = pROC::roc(y, xr, direction = "<", quiet = TRUE),
@@ -156,7 +156,7 @@ vec_cast.triptych_roc.double <- function(x, to, ...) {
     x = x
   ) |>
     list() |>
-    new_triptych_roc(y = y, convex = convex)
+    new_triptych_roc(y = y, concave = concave)
 }
 
 

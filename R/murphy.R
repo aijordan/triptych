@@ -3,18 +3,18 @@
 #' A Murphy curve visualizes economic utility by displaying the mean elementary
 #' scores across all threshold values.
 #'
-#' @param ref A numeric vector of reference predictions. Can also be supplied as a column with name "ref" in the tibble coerced from `x`.
+#' @param ref A numeric vector of reference forecasts. Can also be supplied as a column with name "ref" in the tibble coerced from `x`.
 #' @param ... Unused.
 #' @inheritParams triptych
 #'
 #' @return A `triptych_murphy` object, that is a `vctrs_vctr` subclass, and has
-#'   a length equal to number of prediction methods supplied in `x`. Each entry
-#'   is named according to the corresponding prediction method,
+#'   a length equal to number of forecasting methods supplied in `x`. Each entry
+#'   is named according to the corresponding forecasting method,
 #'   and contains a list of named objects:
 #'     * `estimate`: A data frame with the threshold and corresponding mean score values.
 #'     * `region`: Either an empty list, or a data frame of point confidence intervals
 #'       added by [add_confidence()].
-#'     * `x`: The numeric vector of original predictions.
+#'     * `x`: The numeric vector of original forecasts.
 #'   Access is most convenient through [estimates()], [regions()], and [forecasts()].
 #'
 #' @seealso Accessors: [estimates()], [regions()], [forecasts()]
@@ -25,10 +25,10 @@
 #'
 #' @examples
 #' # Construction
-#' predictions <- matrix(runif(300), ncol = 3)
-#' colnames(predictions) <- c("Method_1", "Method_2", "Method_3")
-#' observations <- rbinom(100, 1, predictions[, 1])
-#' mur1 <- murphy(predictions, observations)
+#' forecasts <- matrix(runif(300), ncol = 3)
+#' colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
+#' observations <- rbinom(100, 1, forecasts[, 1])
+#' mur1 <- murphy(forecasts, observations)
 #'
 #' pred_obs <- tibble::tibble(M1 = runif(100), y = rbinom(100, 1, M1))
 #' mur2 <- murphy(pred_obs)

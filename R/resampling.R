@@ -9,14 +9,14 @@
 #'
 #' @return
 #' A list of tibbles that contain the information to draw confidence regions.
-#' The length is equal to the number of prediction methods in `x`.
+#' The length is equal to the number of forecasting methods in `x`.
 #'
 #' @examples
 #' # Triptych construction
-#' predictions <- matrix(runif(300), ncol = 3)
-#' colnames(predictions) <- c("Method_1", "Method_2", "Method_3")
-#' observations <- rbinom(100, 1, predictions[, 1])
-#' tr <- triptych(predictions, observations)
+#' forecasts <- matrix(runif(300), ncol = 3)
+#' colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
+#' observations <- rbinom(100, 1, forecasts[, 1])
+#' tr <- triptych(forecasts, observations)
 #'
 #' resampling_cases(tr$murphy, n_boot = 50)
 #' resampling_cases(tr$reliability, n_boot = 50)
@@ -38,14 +38,14 @@ resampling_cases <- function(x, level = 0.9, n_boot = 1000, ...) {
 #'
 #' @return
 #' A list of tibbles that contain the information to draw confidence regions.
-#' The length is equal to the number of prediction methods in `x`.
+#' The length is equal to the number of forecasting methods in `x`.
 #'
 #' @examples
 #' # Triptych construction
-#' predictions <- matrix(runif(300), ncol = 3)
-#' colnames(predictions) <- c("Method_1", "Method_2", "Method_3")
-#' observations <- rbinom(100, 1, predictions[, 1])
-#' tr <- triptych(predictions, observations)
+#' forecasts <- matrix(runif(300), ncol = 3)
+#' colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
+#' observations <- rbinom(100, 1, forecasts[, 1])
+#' tr <- triptych(forecasts, observations)
 #'
 #' resampling_cases(tr$murphy, n_boot = 50)
 #' resampling_cases(tr$reliability, position = "estimate", n_boot = 50)

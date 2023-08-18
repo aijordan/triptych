@@ -10,11 +10,11 @@ murphy(x, y = NULL, ref = NULL, ...)
 as_murphy(x, r)
 }
 \arguments{
-\item{x}{A data frame, list, matrix, or other object that can be coerced to a tibble. Contains numeric predictions.}
+\item{x}{A data frame, list, matrix, or other object that can be coerced to a tibble. Contains numeric forecasts.}
 
 \item{y}{A numeric vector of observations. If missing, a column with name "y" must be present in the tibble coerced from \code{x}.}
 
-\item{ref}{A numeric vector of reference predictions. Can also be supplied as a column with name "ref" in the tibble coerced from \code{x}.}
+\item{ref}{A numeric vector of reference forecasts. Can also be supplied as a column with name "ref" in the tibble coerced from \code{x}.}
 
 \item{...}{Unused.}
 
@@ -22,13 +22,13 @@ as_murphy(x, r)
 }
 \value{
 A \code{triptych_murphy} object, that is a \code{vctrs_vctr} subclass, and has
-a length equal to number of prediction methods supplied in \code{x}. Each entry
-is named according to the corresponding prediction method,
+a length equal to number of forecasting methods supplied in \code{x}. Each entry
+is named according to the corresponding forecasting method,
 and contains a list of named objects:
 * \code{estimate}: A data frame with the threshold and corresponding mean score values.
 * \code{region}: Either an empty list, or a data frame of point confidence intervals
 added by \code{\link[=add_confidence]{add_confidence()}}.
-* \code{x}: The numeric vector of original predictions.
+* \code{x}: The numeric vector of original forecasts.
 Access is most convenient through \code{\link[=estimates]{estimates()}}, \code{\link[=regions]{regions()}}, and \code{\link[=forecasts]{forecasts()}}.
 }
 \description{
@@ -37,10 +37,10 @@ scores across all threshold values.
 }
 \examples{
 # Construction
-predictions <- matrix(runif(300), ncol = 3)
-colnames(predictions) <- c("Method_1", "Method_2", "Method_3")
-observations <- rbinom(100, 1, predictions[, 1])
-mur1 <- murphy(predictions, observations)
+forecasts <- matrix(runif(300), ncol = 3)
+colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
+observations <- rbinom(100, 1, forecasts[, 1])
+mur1 <- murphy(forecasts, observations)
 
 pred_obs <- tibble::tibble(M1 = runif(100), y = rbinom(100, 1, M1))
 mur2 <- murphy(pred_obs)
