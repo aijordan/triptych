@@ -14,7 +14,7 @@ reference:
 - contents:
   - add_consistency
   - add_confidence
-  - contatins("resampling")
+  - contains("resampling")
 - title: Display diagnostic graphics
 - contents:
   - contains("plot")
