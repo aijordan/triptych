@@ -37,29 +37,26 @@ devtools::install_github("aijordan/triptych")
 
 ``` r
 library(triptych)
-
-# Predictions and observations
-set.seed(20230817)
-predictions <- matrix(runif(1000), ncol = 10)
-colnames(predictions) <- sprintf("Method_%02i", 1:10)
-observations <- rbinom(100, 1, predictions[, 1])
+data(ex_binary, package = "triptych")
+set.seed(20230921)
 
 # Construct and inspect
-tr <- triptych(predictions, observations)
+tr <- triptych(ex_binary)
+# or: tr <- triptych(ex_binary[2:11], ex_binary[1])
 tr
 #> # A tibble: 10 × 5
-#>    forecast           murphy     reliability             roc          mcbdsc
-#>    <chr>          <trpt_mur>      <trpt_rel>      <trpt_roc>   <trpt_mcbdsc>
-#>  1 Method_01 <named list[3]> <named list[3]> <named list[3]> <named list[3]>
-#>  2 Method_02 <named list[3]> <named list[3]> <named list[3]> <named list[3]>
-#>  3 Method_03 <named list[3]> <named list[3]> <named list[3]> <named list[3]>
-#>  4 Method_04 <named list[3]> <named list[3]> <named list[3]> <named list[3]>
-#>  5 Method_05 <named list[3]> <named list[3]> <named list[3]> <named list[3]>
-#>  6 Method_06 <named list[3]> <named list[3]> <named list[3]> <named list[3]>
-#>  7 Method_07 <named list[3]> <named list[3]> <named list[3]> <named list[3]>
-#>  8 Method_08 <named list[3]> <named list[3]> <named list[3]> <named list[3]>
-#>  9 Method_09 <named list[3]> <named list[3]> <named list[3]> <named list[3]>
-#> 10 Method_10 <named list[3]> <named list[3]> <named list[3]> <named list[3]>
+#>    forecast          murphy     reliability             roc          mcbdsc
+#>    <chr>         <trpt_mur>      <trpt_rel>      <trpt_roc>   <trpt_mcbdsc>
+#>  1 X01      <named list[3]> <named list[3]> <named list[3]> <named list[3]>
+#>  2 X02      <named list[3]> <named list[3]> <named list[3]> <named list[3]>
+#>  3 X03      <named list[3]> <named list[3]> <named list[3]> <named list[3]>
+#>  4 X04      <named list[3]> <named list[3]> <named list[3]> <named list[3]>
+#>  5 X05      <named list[3]> <named list[3]> <named list[3]> <named list[3]>
+#>  6 X06      <named list[3]> <named list[3]> <named list[3]> <named list[3]>
+#>  7 X07      <named list[3]> <named list[3]> <named list[3]> <named list[3]>
+#>  8 X08      <named list[3]> <named list[3]> <named list[3]> <named list[3]>
+#>  9 X09      <named list[3]> <named list[3]> <named list[3]> <named list[3]>
+#> 10 X10      <named list[3]> <named list[3]> <named list[3]> <named list[3]>
 class(tr)
 #> [1] "triptych"   "tbl_df"     "tbl"        "data.frame"
 
@@ -67,10 +64,10 @@ class(tr)
 # 2. Add consistency bands (for reliability curves)
 # 3. Create patchwork object
 # 4. Adjust the title of the legend
-dplyr::slice_head(tr, n = 4) |>
+dplyr::slice(tr, 1, 3, 6, 9) |>
   add_consistency(level = 0.9, n_boot = 100) |>
   autoplot() &
-  ggplot2::guides(colour = ggplot2::guide_legend("Predictions"))
+  ggplot2::guides(colour = ggplot2::guide_legend("Forecast"))
 ```
 
 <img src="man/figures/README-example_triptych-1.png" width="100%" />
@@ -79,18 +76,18 @@ dplyr::slice_head(tr, n = 4) |>
 # From already computed triptych
 estimates(tr$mcbdsc)
 #> # A tibble: 10 × 5
-#>    forecast  mean_score    MCB     DSC   UNC
-#>    <chr>          <dbl>  <dbl>   <dbl> <dbl>
-#>  1 Method_01      0.173 0.0279 0.105    0.25
-#>  2 Method_02      0.357 0.110  0.00281  0.25
-#>  3 Method_03      0.338 0.0970 0.00903  0.25
-#>  4 Method_04      0.294 0.0583 0.0140   0.25
-#>  5 Method_05      0.307 0.0704 0.0138   0.25
-#>  6 Method_06      0.326 0.0863 0.0107   0.25
-#>  7 Method_07      0.338 0.0952 0.00724  0.25
-#>  8 Method_08      0.314 0.0789 0.0145   0.25
-#>  9 Method_09      0.338 0.0982 0.0103   0.25
-#> 10 Method_10      0.354 0.116  0.0118   0.25
+#>    forecast mean_score     MCB    DSC   UNC
+#>    <chr>         <dbl>   <dbl>  <dbl> <dbl>
+#>  1 X01          0.0827 0.00474 0.172  0.250
+#>  2 X02          0.127  0.0233  0.146  0.250
+#>  3 X03          0.134  0.0172  0.132  0.250
+#>  4 X04          0.194  0.0587  0.114  0.250
+#>  5 X05          0.222  0.0723  0.100  0.250
+#>  6 X06          0.180  0.00494 0.0748 0.250
+#>  7 X07          0.212  0.0211  0.0590 0.250
+#>  8 X08          0.235  0.0263  0.0410 0.250
+#>  9 X09          0.303  0.0818  0.0282 0.250
+#> 10 X10          0.312  0.0772  0.0148 0.250
 autoplot(tr$mcbdsc)
 ```
 
@@ -99,6 +96,6 @@ autoplot(tr$mcbdsc)
 ``` r
 
 # Or standalone:
-# mcbdsc(predictions, observations) |> autoplot()
 # mcbdsc(predictions, observations) |> estimates()
+# mcbdsc(predictions, observations) |> autoplot()
 ```
