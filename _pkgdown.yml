@@ -2,3 +2,25 @@ url: https://aijordan.github.io/triptych/
 template:
   bootstrap: 5
 
+reference:
+- title: Create objects
+- contents:
+  - triptych
+  - contains("murphy")
+  - contains("reliability")
+  - contains("roc")
+  - contains("mcbdsc")
+- title: Add uncertainty quantification to objects
+- contents:
+  - add_consistency
+  - add_confidence
+  - contatins("resampling")
+- title: Display diagnostic graphics
+- contents:
+  - contains("plot")
+- title: Accessing object data
+- contents:
+  - forecasts
+  - observations
+  - estimates
+  - regions
