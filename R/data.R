@@ -1,14 +1,20 @@
-#' Example data set with binary observations and forecasts from nested information sets
+#' Example data set of binary observations and probability forecasts
 #' 
 #' A more detailed explanation of the simulation setting...
 #' 
-#' @format ## `ex_binary_nested`
-#' A data frame with 1,000 rows and 4 columns:
+#' @format ## `ex_binary`
+#' A data frame with 1,000 rows and 11 columns:
 #' \describe{
 #'   \item{y}{observations}
-#'   \item{X0}{forecasts from largest information set}
-#'   \item{X1}{forecasts from second largest information set}
-#'   \item{X2}{forecasts from third largest information set}
-#'   \item{X3}{forecasts from smallest information set}
+#'   \item{X01}{forecasts as specified above}
+#'   \item{X02}{forecasts as specified above}
+#'   \item{X03}{forecasts as specified above}
+#'   \item{X04}{forecasts as specified above}
+#'   \item{X05}{forecasts as specified above}
+#'   \item{X06}{forecasts as specified above}
+#'   \item{X07}{forecasts as specified above}
+#'   \item{X08}{forecasts as specified above}
+#'   \item{X09}{forecasts as specified above}
+#'   \item{X10}{forecasts as specified above}
 #' }
-"ex_binary_nested"
+"ex_binary"
