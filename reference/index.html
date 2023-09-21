@@ -44,7 +44,7 @@
     </div>
 
     <div class="section level2">
-      <h2 id="all-functions">All functions<a class="anchor" aria-label="anchor" href="#all-functions"></a></h2>
+      <h2 id="create-objects">Create objects<a class="anchor" aria-label="anchor" href="#create-objects"></a></h2>
       
       
 
@@ -56,29 +56,14 @@
 
       <dl><dt>
           
-          <code><a href="accessors.html">forecasts()</a></code> <code><a href="accessors.html">observations()</a></code> 
+          <code><a href="triptych.html">triptych()</a></code> 
         </dt>
-        <dd>Accessing original forecast and observation data for triptych objects</dd>
-      </dl><dl><dt>
-          
-          <code><a href="add_confidence.html">add_confidence()</a></code> 
-        </dt>
-        <dd>Adding confidence regions</dd>
-      </dl><dl><dt>
-          
-          <code><a href="add_consistency.html">add_consistency()</a></code> 
-        </dt>
-        <dd>Adding consistency regions</dd>
+        <dd>Evaluation of forecasts using a Triptych</dd>
       </dl><dl><dt>
           
           <code><a href="estimates.html">estimates()</a></code> 
         </dt>
         <dd>Accessing diagnostic estimate data</dd>
-      </dl><dl><dt>
-          
-          <code><a href="mcbdsc.html">mcbdsc()</a></code> <code><a href="mcbdsc.html">as_mcbdsc()</a></code> 
-        </dt>
-        <dd>Evaluation of forecasts using score decompositions</dd>
       </dl><dl><dt>
           
           <code><a href="murphy.html">murphy()</a></code> <code><a href="murphy.html">as_murphy()</a></code> 
@@ -96,11 +81,6 @@
         <dd>Accessing confidence/consistency region data</dd>
       </dl><dl><dt>
           
-          <code><a href="reliability.html">reliability()</a></code> <code><a href="reliability.html">as_reliability()</a></code> 
-        </dt>
-        <dd>Evaluation of forecasts using reliability curves</dd>
-      </dl><dl><dt>
-          
           <code><a href="resampling_Bernoulli.html">resampling_Bernoulli()</a></code> 
         </dt>
         <dd>Bootstrap observation resampling for triptych objects</dd>
@@ -111,16 +91,95 @@
         <dd>Bootstrap case resampling for triptych objects</dd>
       </dl><dl><dt>
           
+          <code><a href="reliability.html">reliability()</a></code> <code><a href="reliability.html">as_reliability()</a></code> 
+        </dt>
+        <dd>Evaluation of forecasts using reliability curves</dd>
+      </dl><dl><dt>
+          
           <code><a href="roc.html">roc()</a></code> <code><a href="roc.html">as_roc()</a></code> 
         </dt>
         <dd>Evaluation of forecasts using ROC curves</dd>
       </dl><dl><dt>
           
-          <code><a href="triptych.html">triptych()</a></code> 
+          <code><a href="mcbdsc.html">mcbdsc()</a></code> <code><a href="mcbdsc.html">as_mcbdsc()</a></code> 
         </dt>
-        <dd>Evaluation of forecasts using a Triptych</dd>
+        <dd>Evaluation of forecasts using score decompositions</dd>
+      </dl></div><div class="section level2">
+      <h2 id="add-uncertainty-quantification-to-objects">Add uncertainty quantification to objects<a class="anchor" aria-label="anchor" href="#add-uncertainty-quantification-to-objects"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="add_consistency.html">add_consistency()</a></code> 
+        </dt>
+        <dd>Adding consistency regions</dd>
+      </dl><dl><dt>
+          
+          <code><a href="add_confidence.html">add_confidence()</a></code> 
+        </dt>
+        <dd>Adding confidence regions</dd>
+      </dl><dl><dt>
+          
+          <code><a href="resampling_Bernoulli.html">resampling_Bernoulli()</a></code> 
+        </dt>
+        <dd>Bootstrap observation resampling for triptych objects</dd>
+      </dl><dl><dt>
+          
+          <code><a href="resampling_cases.html">resampling_cases()</a></code> 
+        </dt>
+        <dd>Bootstrap case resampling for triptych objects</dd>
+      </dl></div><div class="section level2">
+      <h2 id="display-diagnostic-graphics">Display diagnostic graphics<a class="anchor" aria-label="anchor" href="#display-diagnostic-graphics"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="plot.triptych.html">plot(<i>&lt;triptych&gt;</i>)</a></code> <code><a href="plot.triptych.html">autoplot(<i>&lt;triptych&gt;</i>)</a></code> <code><a href="plot.triptych.html">plot(<i>&lt;triptych_murphy&gt;</i>)</a></code> <code><a href="plot.triptych.html">autoplot(<i>&lt;triptych_murphy&gt;</i>)</a></code> <code><a href="plot.triptych.html">plot(<i>&lt;triptych_reliability&gt;</i>)</a></code> <code><a href="plot.triptych.html">autoplot(<i>&lt;triptych_reliability&gt;</i>)</a></code> <code><a href="plot.triptych.html">plot(<i>&lt;triptych_roc&gt;</i>)</a></code> <code><a href="plot.triptych.html">autoplot(<i>&lt;triptych_roc&gt;</i>)</a></code> <code><a href="plot.triptych.html">plot(<i>&lt;triptych_mcbdsc&gt;</i>)</a></code> <code><a href="plot.triptych.html">autoplot(<i>&lt;triptych_mcbdsc&gt;</i>)</a></code> 
+        </dt>
+        <dd>Plot methods for the triptych classes</dd>
+      </dl></div><div class="section level2">
+      <h2 id="accessing-object-data">Accessing object data<a class="anchor" aria-label="anchor" href="#accessing-object-data"></a></h2>
+      
+      
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="accessors.html">forecasts()</a></code> <code><a href="accessors.html">observations()</a></code> 
+        </dt>
+        <dd>Accessing original forecast and observation data for triptych objects</dd>
+      </dl><dl><dt>
+          
+          <code><a href="estimates.html">estimates()</a></code> 
+        </dt>
+        <dd>Accessing diagnostic estimate data</dd>
+      </dl><dl><dt>
+          
+          <code><a href="regions.html">regions()</a></code> 
+        </dt>
+        <dd>Accessing confidence/consistency region data</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
