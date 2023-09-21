@@ -6,18 +6,32 @@ reference:
 - title: Create objects
 - contents:
   - triptych
-  - contains("murphy")
-  - contains("reliability")
-  - contains("roc")
-  - contains("mcbdsc")
+  - murphy
+  - as_murphy
+  - reliability
+  - as_reliability
+  - roc
+  - as_roc
+  - mcbdsc
+  - as_mcbdsc
 - title: Add uncertainty quantification to objects
 - contents:
   - add_consistency
   - add_confidence
-  - contains("resampling")
+  - resampling_Bernoulli
+  - resampling_cases
 - title: Display diagnostic graphics
 - contents:
-  - contains("plot")
+  - plot.triptych
+  - plot.triptych_murphy
+  - plot.triptych_reliability
+  - plot.triptych_roc
+  - plot.triptych_mcbdsc
+  - autoplot.triptych
+  - autoplot.triptych_murphy
+  - autoplot.triptych_reliability
+  - autoplot.triptych_roc
+  - autoplot.triptych_mcbdsc
 - title: Accessing object data
 - contents:
   - forecasts
