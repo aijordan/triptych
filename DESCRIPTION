@@ -43,3 +43,4 @@ RoxygenNote: 7.2.3
 SystemRequirements: C++20
 LinkingTo: 
     cpp11
+LazyData: true

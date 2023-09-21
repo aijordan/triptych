@@ -38,3 +38,6 @@ reference:
   - observations
   - estimates
   - regions
+- title: Simulated example data sets
+- contents:
+  - ex_binary_nested
