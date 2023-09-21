@@ -10,7 +10,7 @@ Authors@R: c(
            role = c("aut", "cre"),
            email = "alexander.jordan@h-its.org")
   )
-URL: https://github.com/aijordan/triptych/
+URL: https://github.com/aijordan/triptych/, https://aijordan.github.io/triptych/
 Description: Overall predictive performance is measured by a mean score
     (or loss), which decomposes into miscalibration, discrimination, and
     uncertainty components. The main focus is visualization of these distinct
