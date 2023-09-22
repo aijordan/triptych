@@ -31,8 +31,8 @@ and contains a list of named objects:
 \item \code{region}: Either an empty list, or a (yet to be determined) object added
 by \code{\link[=add_confidence]{add_confidence()}}.
 \item \code{x}: The numeric vector of original forecasts.
-Access is most convenient through \code{\link[=estimates]{estimates()}}, \code{\link[=regions]{regions()}}, and \code{\link[=forecasts]{forecasts()}}.
 }
+Access is most convenient through \code{\link[=estimates]{estimates()}}, \code{\link[=regions]{regions()}}, and \code{\link[=forecasts]{forecasts()}}.
 }
 \description{
 A score decomposition splits the mean score into the three components of
@@ -50,6 +50,9 @@ class(md)
 
 # Visualize
 autoplot(md)
+
+# Show score decomposition
+estimates(md)
 
 }
 \seealso{

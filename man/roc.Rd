@@ -32,8 +32,8 @@ and contains a list of named objects:
 confidence intervals (along diagonal lines with slope \eqn{-\pi_0/\pi_1})
 added by \code{\link[=add_confidence]{add_confidence()}}.
 \item \code{x}: The numeric vector of original forecasts.
-Access is most convenient through \code{\link[=estimates]{estimates()}}, \code{\link[=regions]{regions()}}, and \code{\link[=forecasts]{forecasts()}}.
 }
+Access is most convenient through \code{\link[=estimates]{estimates()}}, \code{\link[=regions]{regions()}}, and \code{\link[=forecasts]{forecasts()}}.
 }
 \description{
 A ROC curve visualizes discrimination ability by displaying the hit rate against

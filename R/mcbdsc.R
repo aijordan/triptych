@@ -14,10 +14,12 @@
 #'   a length equal to number of forecasting methods supplied in `x`. Each entry
 #'   is named according to the corresponding forecasting method,
 #'   and contains a list of named objects:
-#'   * `estimate`: A data frame of the score decomposition.
-#'   * `region`: Either an empty list, or a (yet to be determined) object added
-#'     by [add_confidence()].
-#'   * `x`: The numeric vector of original forecasts.
+#'   \itemize{
+#'     \item `estimate`: A data frame of the score decomposition.
+#'     \item `region`: Either an empty list, or a (yet to be determined) object added
+#'       by [add_confidence()].
+#'     \item `x`: The numeric vector of original forecasts.
+#'   }
 #'   Access is most convenient through [estimates()], [regions()], and [forecasts()].
 #'
 #' @seealso Accessors: [estimates()], [regions()], [forecasts()]
@@ -36,6 +38,9 @@
 #' 
 #' # Visualize
 #' autoplot(md)
+#' 
+#' # Show score decomposition
+#' estimates(md)
 #'
 #' @name mcbdsc
 NULL
