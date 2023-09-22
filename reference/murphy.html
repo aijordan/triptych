@@ -88,12 +88,11 @@ scores across all threshold values.</p>
 <p>A <code>triptych_murphy</code> object, that is a <code>vctrs_vctr</code> subclass, and has
 a length equal to number of forecasting methods supplied in <code>x</code>. Each entry
 is named according to the corresponding forecasting method,
-and contains a list of named objects:
-* <code>estimate</code>: A data frame with the threshold and corresponding mean score values.
-* <code>region</code>: Either an empty list, or a data frame of point confidence intervals
-added by <code><a href="add_confidence.html">add_confidence()</a></code>.
-* <code>x</code>: The numeric vector of original forecasts.
-Access is most convenient through <code><a href="estimates.html">estimates()</a></code>, <code><a href="regions.html">regions()</a></code>, and <code><a href="accessors.html">forecasts()</a></code>.</p>
+and contains a list of named objects:</p><ul><li><p><code>estimate</code>: A data frame with the threshold and corresponding mean score values.</p></li>
+<li><p><code>region</code>: Either an empty list, or a data frame of point confidence intervals
+added by <code><a href="add_confidence.html">add_confidence()</a></code>.</p></li>
+<li><p><code>x</code>: The numeric vector of original forecasts.</p></li>
+</ul><p>Access is most convenient through <code><a href="estimates.html">estimates()</a></code>, <code><a href="regions.html">regions()</a></code>, and <code><a href="accessors.html">forecasts()</a></code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -104,21 +103,30 @@ Access is most convenient through <code><a href="estimates.html">estimates()</a>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Construction</span></span></span>
-<span class="r-in"><span><span class="va">forecasts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">300</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">forecasts</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Method_1"</span>, <span class="st">"Method_2"</span>, <span class="st">"Method_3"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">observations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">1</span>, <span class="va">forecasts</span><span class="op">[</span>, <span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">mur1</span> <span class="op">&lt;-</span> <span class="fu">murphy</span><span class="op">(</span><span class="va">forecasts</span>, <span class="va">observations</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ex_binary</span>, package <span class="op">=</span> <span class="st">"triptych"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Construct and inspect</span></span></span>
+<span class="r-in"><span><span class="va">mr</span> <span class="op">&lt;-</span> <span class="fu">murphy</span><span class="op">(</span><span class="va">ex_binary</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># or: mr &lt;- murphy(ex_binary[2:11], ex_binary[1])</span></span></span>
+<span class="r-in"><span><span class="va">mr</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;triptych_murphy[10]&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             X01             X02             X03             X04             X05 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;named list[3]&gt; &lt;named list[3]&gt; &lt;named list[3]&gt; &lt;named list[3]&gt; &lt;named list[3]&gt; </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             X06             X07             X08             X09             X10 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;named list[3]&gt; &lt;named list[3]&gt; &lt;named list[3]&gt; &lt;named list[3]&gt; &lt;named list[3]&gt; </span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">mr</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "triptych_murphy" "vctrs_vctr"      "list"           </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">pred_obs</span> <span class="op">&lt;-</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>M1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, y <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">1</span>, <span class="va">M1</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">mur2</span> <span class="op">&lt;-</span> <span class="fu">murphy</span><span class="op">(</span><span class="va">pred_obs</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Visualization</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">mur1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># 1. Choose 4 predictions</span></span></span>
+<span class="r-in"><span><span class="co"># 2. Visualize</span></span></span>
+<span class="r-in"><span><span class="co"># 3. Adjust the title of the legend</span></span></span>
+<span class="r-in"><span><span class="va">mr</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">6</span>, <span class="fl">9</span><span class="op">)</span><span class="op">]</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html" class="external-link">guides</a></span><span class="op">(</span>colour <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html" class="external-link">guide_legend</a></span><span class="op">(</span><span class="st">"Forecast"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="murphy-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span><span class="co"># Build yourself using accessors</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">df_est</span> <span class="op">&lt;-</span> <span class="fu"><a href="estimates.html">estimates</a></span><span class="op">(</span><span class="va">mur1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">df_est</span> <span class="op">&lt;-</span> <span class="fu"><a href="estimates.html">estimates</a></span><span class="op">(</span><span class="va">mr</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">6</span>, <span class="fl">9</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">df_est</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_path</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">knot</span>, y <span class="op">=</span> <span class="va">mean_score</span>, col <span class="op">=</span> <span class="va">forecast</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="murphy-2.png" alt="" width="700" height="433"></span>
