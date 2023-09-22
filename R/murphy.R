@@ -11,10 +11,12 @@
 #'   a length equal to number of forecasting methods supplied in `x`. Each entry
 #'   is named according to the corresponding forecasting method,
 #'   and contains a list of named objects:
-#'     * `estimate`: A data frame with the threshold and corresponding mean score values.
-#'     * `region`: Either an empty list, or a data frame of point confidence intervals
+#'   \itemize{
+#'     \item `estimate`: A data frame with the threshold and corresponding mean score values.
+#'     \item `region`: Either an empty list, or a data frame of point confidence intervals
 #'       added by [add_confidence()].
-#'     * `x`: The numeric vector of original forecasts.
+#'     \item `x`: The numeric vector of original forecasts.
+#'   }
 #'   Access is most convenient through [estimates()], [regions()], and [forecasts()].
 #'
 #' @seealso Accessors: [estimates()], [regions()], [forecasts()]
@@ -24,20 +26,23 @@
 #'   Visualization: [plot.triptych()], [autoplot.triptych()]
 #'
 #' @examples
-#' # Construction
-#' forecasts <- matrix(runif(300), ncol = 3)
-#' colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
-#' observations <- rbinom(100, 1, forecasts[, 1])
-#' mur1 <- murphy(forecasts, observations)
-#'
-#' pred_obs <- tibble::tibble(M1 = runif(100), y = rbinom(100, 1, M1))
-#' mur2 <- murphy(pred_obs)
-#'
-#' # Visualization
-#' autoplot(mur1)
-#'
+#' data(ex_binary, package = "triptych")
+#' # Construct and inspect
+#' mr <- murphy(ex_binary)
+#' # or: mr <- murphy(ex_binary[2:11], ex_binary[1])
+#' mr
+#' class(mr)
+#' 
+#' # 1. Choose 4 predictions
+#' # 2. Visualize
+#' # 3. Adjust the title of the legend
+#' mr[c(1, 3, 6, 9)] |>
+#'   autoplot() +
+#'   ggplot2::guides(colour = ggplot2::guide_legend("Forecast"))
+#'   
+#' # Build yourself using accessors
 #' library(ggplot2)
-#' df_est <- estimates(mur1)
+#' df_est <- estimates(mr[c(1, 3, 6, 9)])
 #' ggplot(df_est) +
 #'   geom_path(aes(x = knot, y = mean_score, col = forecast))
 #'

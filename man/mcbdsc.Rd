@@ -41,17 +41,15 @@ the DSC component against the MCB component allows for a quick visual
 inspection of predictive performance for many forecasting methods.
 }
 \examples{
-# Construction
-forecasts <- matrix(runif(300), ncol = 3)
-colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
-observations <- rbinom(100, 1, forecasts[, 1])
-md1 <- mcbdsc(forecasts, observations)
+#' data(ex_binary, package = "triptych")
+# Construct and inspect
+md <- mcbdsc(ex_binary)
+# or: md <- reliability(ex_binary[2:11], ex_binary[1])
+md
+class(md)
 
-pred_obs <- tibble::tibble(M1 = runif(100), y = rbinom(100, 1, M1))
-md2 <- mcbdsc(pred_obs)
-
-# Visualization
-autoplot(md1)
+# Visualize
+autoplot(md)
 
 }
 \seealso{

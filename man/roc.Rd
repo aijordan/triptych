@@ -40,24 +40,26 @@ A ROC curve visualizes discrimination ability by displaying the hit rate against
 the false alarm rate for all threshold values.
 }
 \examples{
-# Construction
-forecasts <- matrix(runif(300), ncol = 3)
-colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
-observations <- rbinom(100, 1, forecasts[, 1])
-roc1 <- roc(forecasts, observations)
+data(ex_binary, package = "triptych")
+# Construct and inspect
+rc <- roc(ex_binary)
+# or: rc <- roc(ex_binary[2:11], ex_binary[1])
+rc
+class(rc)
 
-pred_obs <- tibble::tibble(M1 = runif(100), y = rbinom(100, 1, M1))
-roc2 <- roc(pred_obs)
-
-# Visualization
-autoplot(roc1)
-
+# 1. Choose 4 predictions
+# 2. Visualize
+# 3. Adjust the title of the legend
+rc[c(1, 3, 6, 9)]) |>
+  autoplot() +
+  ggplot2::guides(colour = ggplot2::guide_legend("Forecast"))
+  
+# Build yourself using accessors
 library(ggplot2)
-df_est <- estimates(roc1)
-ggplot(df_est) +
+df_est <- estimates(rc[c(1, 3, 6, 9)]))
+ggplot(df_est, aes(x = FAR, y = HR, col = forecast)) +
   geom_segment(aes(x = 0, y = 0, xend = 1, yend = 1)) +
-  geom_path(aes(x = FAR, y = HR, col = forecast)) +
-  labs(x = "False alarm rate", y = "Hit rate")
+  geom_path()
 
 }
 \seealso{

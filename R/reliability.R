@@ -10,11 +10,13 @@
 #'   a length equal to number of forecasting methods supplied in `x`. Each entry
 #'   is named according to the corresponding forecasting method,
 #'   and contains a list of named objects:
-#'   * `estimate`: A data frame with the isotonic regression estimate.
-#'   * `region`: Either an empty list, or a data frame of pointwise consistency
+#'   \itemize{
+#'     \item `estimate`: A data frame with the isotonic regression estimate.
+#'     \item `region`: Either an empty list, or a data frame of pointwise consistency
 #'       or confidence intervals
 #'       added by [add_consistency()] or [add_confidence()], respectively.
-#'   * `x`: The numeric vector of original forecasts.
+#'     \item `x`: The numeric vector of original forecasts.
+#'   }
 #'   Access is most convenient through [estimates()], [regions()], and [forecasts()].
 #'
 #' @seealso Accessors: [estimates()], [regions()], [forecasts()]
@@ -24,24 +26,26 @@
 #'   Visualization: [plot.triptych()], [autoplot.triptych()]
 #'
 #' @examples
-#' # Construction
-#' forecasts <- matrix(runif(300), ncol = 3)
-#' colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
-#' observations <- rbinom(100, 1, forecasts[, 1])
-#' rel1 <- reliability(forecasts, observations)
-#'
-#' pred_obs <- tibble::tibble(M1 = runif(100), y = rbinom(100, 1, M1))
-#' rel2 <- reliability(pred_obs)
-#'
-#' # Visualization
-#' autoplot(rel1)
-#'
+#' data(ex_binary, package = "triptych")
+#' # Construct and inspect
+#' rel <- reliability(ex_binary)
+#' # or: rel <- reliability(ex_binary[2:11], ex_binary[1])
+#' rel
+#' class(rel)
+#' 
+#' # 1. Choose 4 predictions
+#' # 2. Visualize
+#' # 3. Adjust the title of the legend
+#' rel[c(1, 3, 6, 9)] |>
+#'   autoplot() +
+#'   ggplot2::guides(colour = ggplot2::guide_legend("Forecast"))
+#'   
+#' # Build yourself using accessors
 #' library(ggplot2)
-#' df_est <- estimates(rel1)
-#' ggplot(df_est) +
+#' df_est <- estimates(rel[c(1, 3, 6, 9)])
+#' ggplot(df_est, aes(x = x, y = CEP, col = forecast)) +
 #'   geom_segment(aes(x = 0, y = 0, xend = 1, yend = 1)) +
-#'   geom_path(aes(x = x, y = CEP, col = forecast)) +
-#'   labs(x = "Forecast value", y = "Cond. event probability")
+#'   geom_path()
 #'
 #' @name reliability
 NULL

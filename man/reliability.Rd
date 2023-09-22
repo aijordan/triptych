@@ -29,32 +29,34 @@ and contains a list of named objects:
 or confidence intervals
 added by \code{\link[=add_consistency]{add_consistency()}} or \code{\link[=add_confidence]{add_confidence()}}, respectively.
 \item \code{x}: The numeric vector of original forecasts.
-Access is most convenient through \code{\link[=estimates]{estimates()}}, \code{\link[=regions]{regions()}}, and \code{\link[=forecasts]{forecasts()}}.
 }
+Access is most convenient through \code{\link[=estimates]{estimates()}}, \code{\link[=regions]{regions()}}, and \code{\link[=forecasts]{forecasts()}}.
 }
 \description{
 A reliability curve visualizes miscalibration by displaying the (isotonic)
 conditional event probability against the forecast value.
 }
 \examples{
-# Construction
-forecasts <- matrix(runif(300), ncol = 3)
-colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
-observations <- rbinom(100, 1, forecasts[, 1])
-rel1 <- reliability(forecasts, observations)
+data(ex_binary, package = "triptych")
+# Construct and inspect
+rel <- reliability(ex_binary)
+# or: rel <- reliability(ex_binary[2:11], ex_binary[1])
+rel
+class(rel)
 
-pred_obs <- tibble::tibble(M1 = runif(100), y = rbinom(100, 1, M1))
-rel2 <- reliability(pred_obs)
-
-# Visualization
-autoplot(rel1)
-
+# 1. Choose 4 predictions
+# 2. Visualize
+# 3. Adjust the title of the legend
+rel[c(1, 3, 6, 9)] |>
+  autoplot() +
+  ggplot2::guides(colour = ggplot2::guide_legend("Forecast"))
+  
+# Build yourself using accessors
 library(ggplot2)
-df_est <- estimates(rel1)
-ggplot(df_est) +
+df_est <- estimates(rel[c(1, 3, 6, 9)])
+ggplot(df_est, aes(x = x, y = CEP, col = forecast)) +
   geom_segment(aes(x = 0, y = 0, xend = 1, yend = 1)) +
-  geom_path(aes(x = x, y = CEP, col = forecast)) +
-  labs(x = "Forecast value", y = "Cond. event probability")
+  geom_path()
 
 }
 \seealso{

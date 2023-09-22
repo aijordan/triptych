@@ -73,7 +73,7 @@ dplyr::slice(tr, 1, 3, 6, 9) |>
 <img src="man/figures/README-example_triptych-1.png" width="100%" />
 
 ``` r
-# From already computed triptych
+# From existing triptych object
 estimates(tr$mcbdsc)
 #> # A tibble: 10 × 5
 #>    forecast mean_score     MCB    DSC   UNC
@@ -96,6 +96,6 @@ autoplot(tr$mcbdsc)
 ``` r
 
 # Or standalone:
-# mcbdsc(predictions, observations) |> estimates()
-# mcbdsc(predictions, observations) |> autoplot()
+# mcbdsc(ex_binary) |> estimates()
+# mcbdsc(ex_binary) |> autoplot()
 ```

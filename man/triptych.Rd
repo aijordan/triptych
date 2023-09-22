@@ -30,21 +30,21 @@ and discrimination ability via ROC curves.
 The \code{triptych} S3 class has plotting methods for \code{ggplot2}.
 }
 \examples{
-# Construction
-forecasts <- matrix(runif(300), ncol = 3)
-colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
-observations <- rbinom(100, 1, forecasts[, 1])
-tr <- triptych(forecasts, observations)
+data(ex_binary, package = "triptych")
+# Construct and inspect
+tr <- triptych(ex_binary)
+# or: tr <- triptych(ex_binary[2:11], ex_binary[1])
+tr
+class(tr)
 
-pred_obs <- tibble::tibble(M1 = runif(100), y = rbinom(100, 1, M1))
-tr <- triptych(pred_obs)
-
-# Visualization
-autoplot(tr)
-
-# Consistency bands (for reliability curves)
-tr <- add_consistency(tr, level = 0.9, n_boot = 100)
-autoplot(tr)
+# 1. Choose 4 predictions
+# 2. Add consistency bands (for reliability curves)
+# 3. Create patchwork object
+# 4. Adjust the title of the legend
+dplyr::slice(tr, 1, 3, 6, 9) |>
+  add_consistency(level = 0.9, n_boot = 100) |>
+  autoplot() &
+  ggplot2::guides(colour = ggplot2::guide_legend("Forecast"))
 
 }
 \seealso{
