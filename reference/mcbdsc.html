@@ -98,9 +98,9 @@ is named according to the corresponding forecasting method,
 and contains a list of named objects:</p><ul><li><p><code>estimate</code>: A data frame of the score decomposition.</p></li>
 <li><p><code>region</code>: Either an empty list, or a (yet to be determined) object added
 by <code><a href="add_confidence.html">add_confidence()</a></code>.</p></li>
-<li><p><code>x</code>: The numeric vector of original forecasts.
-Access is most convenient through <code><a href="estimates.html">estimates()</a></code>, <code><a href="regions.html">regions()</a></code>, and <code><a href="accessors.html">forecasts()</a></code>.</p></li>
-</ul></div>
+<li><p><code>x</code>: The numeric vector of original forecasts.</p></li>
+</ul><p>Access is most convenient through <code><a href="estimates.html">estimates()</a></code>, <code><a href="regions.html">regions()</a></code>, and <code><a href="accessors.html">forecasts()</a></code>.</p>
+    </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Accessors: <code><a href="estimates.html">estimates()</a></code>, <code><a href="regions.html">regions()</a></code>, <code><a href="accessors.html">forecasts()</a></code></p>
@@ -126,6 +126,22 @@ Access is most convenient through <code><a href="estimates.html">estimates()</a>
 <span class="r-in"><span><span class="co"># Visualize</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/autoplot.html" class="external-link">autoplot</a></span><span class="op">(</span><span class="va">md</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="mcbdsc-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Show score decomposition</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="estimates.html">estimates</a></span><span class="op">(</span><span class="va">md</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 5</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    forecast mean_score     MCB    DSC   UNC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> X01          0.082<span style="text-decoration: underline;">7</span> 0.004<span style="text-decoration: underline;">74</span> 0.172  0.250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> X02          0.127  0.023<span style="text-decoration: underline;">3</span>  0.146  0.250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> X03          0.134  0.017<span style="text-decoration: underline;">2</span>  0.132  0.250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> X04          0.194  0.058<span style="text-decoration: underline;">7</span>  0.114  0.250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> X05          0.222  0.072<span style="text-decoration: underline;">3</span>  0.100  0.250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> X06          0.180  0.004<span style="text-decoration: underline;">94</span> 0.074<span style="text-decoration: underline;">8</span> 0.250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> X07          0.212  0.021<span style="text-decoration: underline;">1</span>  0.059<span style="text-decoration: underline;">0</span> 0.250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> X08          0.235  0.026<span style="text-decoration: underline;">3</span>  0.041<span style="text-decoration: underline;">0</span> 0.250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> X09          0.303  0.081<span style="text-decoration: underline;">8</span>  0.028<span style="text-decoration: underline;">2</span> 0.250</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> X10          0.312  0.077<span style="text-decoration: underline;">2</span>  0.014<span style="text-decoration: underline;">8</span> 0.250</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
