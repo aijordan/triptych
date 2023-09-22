@@ -38,13 +38,13 @@
 #' # 1. Choose 4 predictions
 #' # 2. Visualize
 #' # 3. Adjust the title of the legend
-#' rc[c(1, 3, 6, 9)]) |>
+#' rc[c(1, 3, 6, 9)] |>
 #'   autoplot() +
 #'   ggplot2::guides(colour = ggplot2::guide_legend("Forecast"))
 #'   
 #' # Build yourself using accessors
 #' library(ggplot2)
-#' df_est <- estimates(rc[c(1, 3, 6, 9)]))
+#' df_est <- estimates(rc[c(1, 3, 6, 9)])
 #' ggplot(df_est, aes(x = FAR, y = HR, col = forecast)) +
 #'   geom_segment(aes(x = 0, y = 0, xend = 1, yend = 1)) +
 #'   geom_path()
