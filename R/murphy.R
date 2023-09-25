@@ -242,7 +242,7 @@ add_confidence.triptych_murphy <- function(x, level = 0.9, method = "resampling_
 #' @rdname resampling_cases
 #' @export
 resampling_cases.triptych_murphy <- function(x, level = 0.9, n_boot = 1000, ...) {
-  saved_seed <- .Random.seed
+  #saved_seed <- .Random.seed
   y <- observations(x)
   thresholds <- seq(0, 1, length.out = 1000)
   purrr::map(
@@ -266,7 +266,7 @@ resampling_cases.triptych_murphy <- function(x, level = 0.9, n_boot = 1000, ...)
 #' @rdname resampling_Bernoulli
 #' @export
 resampling_Bernoulli.triptych_murphy <- function(x, level = 0.9, n_boot = 1000, ...) {
-  saved_seed <- .Random.seed
+  #saved_seed <- .Random.seed
   y <- observations(x)
   thresholds <- seq(0, 1, length.out = 1000)
   purrr::map(

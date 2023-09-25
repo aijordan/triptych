@@ -243,7 +243,7 @@ add_confidence.triptych_roc <- function(x, level = 0.9, method = "resampling_cas
 #' @rdname resampling_cases
 #' @export
 resampling_cases.triptych_roc <- function(x, level = 0.9, n_boot = 1000, ...) {
-  saved_seed <- .Random.seed
+  #saved_seed <- .Random.seed
   y <- observations(x)
   p1 <- mean(y)
   rates <- seq(0, 1, length.out = length(y) + 1)
@@ -267,7 +267,7 @@ resampling_cases.triptych_roc <- function(x, level = 0.9, n_boot = 1000, ...) {
 #' @rdname resampling_Bernoulli
 #' @export
 resampling_Bernoulli.triptych_roc <- function(x, level = 0.9, n_boot = 1000, ...) {
-  saved_seed <- .Random.seed
+  #saved_seed <- .Random.seed
   y <- observations(x)
   p1 <- mean(y)
   rates <- seq(0, 1, length.out = length(y) + 1)

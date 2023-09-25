@@ -224,7 +224,7 @@ add_confidence.triptych_mcbdsc <- function(x, level = 0.9, method = "resampling_
 
 
 resampling_cases.triptych_mcbdsc <- function(x, level = 0.9, n_boot = 1000, ...) {
-  saved_seed <- .Random.seed
+  #saved_seed <- .Random.seed
   y <- observations(x)
   warning("Experimental: Bootstrapping may be unreliable for the MCB component.")
   purrr::map(
@@ -242,7 +242,7 @@ resampling_cases.triptych_mcbdsc <- function(x, level = 0.9, n_boot = 1000, ...)
 
 
 resampling_Bernoulli.triptych_mcbdsc <- function(x, level = 0.9, n_boot = 1000, resample_x = TRUE, ...) {
-  saved_seed <- .Random.seed
+  #saved_seed <- .Random.seed
   y <- observations(x)
   n_obs <- length(y)
   warning("Experimental: Bootstrapping may be unreliable for the MCB component.")

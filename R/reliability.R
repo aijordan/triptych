@@ -251,7 +251,7 @@ add_consistency.triptych_reliability <- function(x, level = 0.9, method = "resam
 #' @rdname resampling_cases
 #' @export
 resampling_cases.triptych_reliability <- function(x, level = 0.9, n_boot = 1000, ...) {
-  saved_seed <- .Random.seed
+  #saved_seed <- .Random.seed
   y <- observations(x)
   purrr::map(
     .x = x,
@@ -278,7 +278,7 @@ resampling_cases.triptych_reliability <- function(x, level = 0.9, n_boot = 1000,
 #' @rdname resampling_Bernoulli
 #' @export
 resampling_Bernoulli.triptych_reliability <- function(x, level = 0.9, n_boot = 1000, position = c("diagonal", "estimate"), ...) {
-  saved_seed <- .Random.seed
+  #saved_seed <- .Random.seed
   y <- observations(x)
   position <- match.arg(position)
   x0 <- switch(position, diagonal = expression(o$x), estimate = expression(recalibrate_mean2(o$x, y)))
