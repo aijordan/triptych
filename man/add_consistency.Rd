@@ -2,17 +2,37 @@
 % Please edit documentation in R/observations.R
 \name{add_consistency}
 \alias{add_consistency}
-\title{Adding consistency regions}
+\title{Adding consistency regions for reliability curves}
 \usage{
-add_consistency(x, level, ...)
+add_consistency(x, level, method, ...)
 }
 \arguments{
 \item{x}{An object to which a consistency region should be added.}
 
 \item{level}{A single value for the level of confidence.}
 
+\item{method}{A string that gives the name of method to generate the consistency regions. Currently, one of: "resampling_cases", "resampling_Bernoulli".}
+
 \item{...}{Additional arguments passed to methods.}
 }
+\value{
+The object given to \code{x}, but with information about the consistency regions.
+This information can be accessed conveniently by using \code{\link[=regions]{regions()}} on the
+reliability curve component.
+}
 \description{
-Adding consistency regions
+Consistency regions are created under the assumption that the forecasts are calibrated.
+A reliability curve that significantly violates the consistency region indicates
+a miscalibrated forecast.
+}
+\examples{
+data(ex_binary, package = "triptych")
+
+# Construct triptych object (with reliability curve component) and select 4 forecasts
+tr <- triptych(ex_binary) |>
+  dplyr::slice(1, 3, 6, 9)
+
+tr <- add_consistency(tr, level = 0.9, n_boot = 100)
+regions(tr$reliability)
+
 }

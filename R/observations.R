@@ -66,24 +66,65 @@ eval_diag <- function(x, at, ...) {
 }
 
 #' Adding confidence regions
+#' 
+#' Confidence regions are supposed to contain the true "parameter" with a given degree of confidence.
+#' Here, "parameter" refers to a murphy curve, a reliability curve, or a ROC curve, respectively.
 #'
 #' @param x An object to which a confidence region should be added.
 #' @param level A single value for the level of confidence.
+#' @param method A string that gives the name of method to generate the confidence regions. Currently, one of: "resampling_cases", "resampling_Bernoulli".
 #' @param ... Additional arguments passed to methods.
-#'
+#' 
+#' @return 
+#' The object given to `x`, but with information about the confidence regions.
+#' This information can be accessed conveniently by using [regions()] on the
+#' curve component of interest.
+#' 
+#' @examples
+#' data(ex_binary, package = "triptych")
+#' 
+#' # Construct triptych object and select 4 forecasts
+#' tr <- triptych(ex_binary) |>
+#'   dplyr::slice(1, 3, 6, 9)
+#' 
+#' tr <- add_consistency(tr, level = 0.9, n_boot = 100)
+#' regions(tr$murphy)
+#' regions(tr$reliability)
+#' regions(tr$roc)
+#' 
 #' @export
-add_confidence <- function(x, level, ...) {
+add_confidence <- function(x, level, method, ...) {
   UseMethod("add_confidence")
 }
 
-#' Adding consistency regions
+#' Adding consistency regions for reliability curves
+#' 
+#' Consistency regions are created under the assumption that the forecasts are calibrated.
+#' A reliability curve that significantly violates the consistency region indicates
+#' a miscalibrated forecast.
 #'
 #' @param x An object to which a consistency region should be added.
 #' @param level A single value for the level of confidence.
+#' @param method A string that gives the name of method to generate the consistency regions. Currently, one of: "resampling_cases", "resampling_Bernoulli".
 #' @param ... Additional arguments passed to methods.
 #'
+#' @return 
+#' The object given to `x`, but with information about the consistency regions.
+#' This information can be accessed conveniently by using [regions()] on the
+#' reliability curve component.
+#' 
+#' @examples
+#' data(ex_binary, package = "triptych")
+#' 
+#' # Construct triptych object (with reliability curve component) and select 4 forecasts
+#' tr <- triptych(ex_binary) |>
+#'   dplyr::slice(1, 3, 6, 9)
+#' 
+#' tr <- add_consistency(tr, level = 0.9, n_boot = 100)
+#' regions(tr$reliability)
+#' 
 #' @export
-add_consistency <- function(x, level, ...) {
+add_consistency <- function(x, level, method, ...) {
   UseMethod("add_consistency")
 }
 

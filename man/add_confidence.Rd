@@ -4,15 +4,36 @@
 \alias{add_confidence}
 \title{Adding confidence regions}
 \usage{
-add_confidence(x, level, ...)
+add_confidence(x, level, method, ...)
 }
 \arguments{
 \item{x}{An object to which a confidence region should be added.}
 
 \item{level}{A single value for the level of confidence.}
 
+\item{method}{A string that gives the name of method to generate the confidence regions. Currently, one of: "resampling_cases", "resampling_Bernoulli".}
+
 \item{...}{Additional arguments passed to methods.}
 }
+\value{
+The object given to \code{x}, but with information about the confidence regions.
+This information can be accessed conveniently by using \code{\link[=regions]{regions()}} on the
+curve component of interest.
+}
 \description{
-Adding confidence regions
+Confidence regions are supposed to contain the true "parameter" with a given degree of confidence.
+Here, "parameter" refers to a murphy curve, a reliability curve, or a ROC curve, respectively.
+}
+\examples{
+data(ex_binary, package = "triptych")
+
+# Construct triptych object and select 4 forecasts
+tr <- triptych(ex_binary) |>
+  dplyr::slice(1, 3, 6, 9)
+
+tr <- add_consistency(tr, level = 0.9, n_boot = 100)
+regions(tr$murphy)
+regions(tr$reliability)
+regions(tr$roc)
+
 }
