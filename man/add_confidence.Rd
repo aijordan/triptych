@@ -31,7 +31,7 @@ data(ex_binary, package = "triptych")
 tr <- triptych(ex_binary) |>
   dplyr::slice(1, 3, 6, 9)
 
-tr <- add_consistency(tr, level = 0.9, n_boot = 100)
+tr <- add_confidence(tr, level = 0.9, n_boot = 100)
 regions(tr$murphy)
 regions(tr$reliability)
 regions(tr$roc)
