@@ -20,7 +20,6 @@
 #' The length is equal to the number of forecasting methods in `x`.
 #'
 #' @examples
-#' \dontrun{
 #' data(ex_binary, package = "triptych")
 #' tr_consistency <- triptych(ex_binary) |>
 #'   dplyr::slice(1, 9) |>
@@ -29,7 +28,6 @@
 #' tr_confidence <- triptych(ex_binary) |>
 #'   dplyr::slice(1, 9) |>
 #'   add_confidence(method = "resampling_cases", n_boot = 50)
-#' }
 #'
 #' @export
 resampling_cases <- function(x, level = 0.9, n_boot = 1000, ...) {
@@ -58,7 +56,6 @@ resampling_cases <- function(x, level = 0.9, n_boot = 1000, ...) {
 #' The length is equal to the number of forecasting methods in `x`.
 #'
 #' @examples
-#' \dontrun{
 #' data(ex_binary, package = "triptych")
 #' tr_consistency <- triptych(ex_binary) |>
 #'   dplyr::slice(1, 9) |>
@@ -67,7 +64,6 @@ resampling_cases <- function(x, level = 0.9, n_boot = 1000, ...) {
 #' tr_confidence <- triptych(ex_binary) |>
 #'   dplyr::slice(1, 9) |>
 #'   add_confidence(method = "resampling_Bernoulli", n_boot = 50)
-#' }
 #' 
 #' @export
 resampling_Bernoulli <- function(x, level = 0.9, n_boot = 1000, ...) {

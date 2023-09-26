@@ -41,7 +41,6 @@ A given number of bootstrap samples are the basis for pointwise computed confide
 For every bootstrap sample, we draw forecast-observations pairs with replacement until the size of the original data set is reached.
 }
 \examples{
-\dontrun{
 data(ex_binary, package = "triptych")
 tr_consistency <- triptych(ex_binary) |>
   dplyr::slice(1, 9) |>
@@ -50,6 +49,5 @@ tr_consistency <- triptych(ex_binary) |>
 tr_confidence <- triptych(ex_binary) |>
   dplyr::slice(1, 9) |>
   add_confidence(method = "resampling_cases", n_boot = 50)
-}
 
 }

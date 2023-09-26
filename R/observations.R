@@ -67,7 +67,7 @@ estimates <- function(x, at, ...) {
 #'   
 #' For a Murphy curve, a tibble with columns: `forecast`, `threshold`, `lower`, `upper`, `method`, `level`.
 #' 
-#' For a reliability curve, a tibble with columns: `forecast`, `x` (forcast values), `lower`, `upper`, `method`, `level`.
+#' For a reliability curve, a tibble with columns: `forecast`, `x` (forecast values), `lower`, `upper`, `method`, `level`.
 #' 
 #' For a ROC curve, a tibble with columns: `forecast`, `FAR` (false alarm rate), `HR` (hit rate), `method`, `level`.
 #' This tibble is twice as long as those for Murphy and reliability curves,
@@ -84,8 +84,6 @@ estimates <- function(x, at, ...) {
 #' regions(tr$murphy)
 #' regions(tr$reliability)
 #' regions(tr$roc)
-#' regions(tr$mcbdsc)
-#' 
 #'
 #' @seealso [estimates()], [forecasts()], [observations()]
 #' @export

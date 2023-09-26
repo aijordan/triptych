@@ -32,7 +32,7 @@ for all supplied forecasting methods.
 
 For a Murphy curve, a tibble with columns: \code{forecast}, \code{threshold}, \code{lower}, \code{upper}, \code{method}, \code{level}.
 
-For a reliability curve, a tibble with columns: \code{forecast}, \code{x} (forcast values), \code{lower}, \code{upper}, \code{method}, \code{level}.
+For a reliability curve, a tibble with columns: \code{forecast}, \code{x} (forecast values), \code{lower}, \code{upper}, \code{method}, \code{level}.
 
 For a ROC curve, a tibble with columns: \code{forecast}, \code{FAR} (false alarm rate), \code{HR} (hit rate), \code{method}, \code{level}.
 This tibble is twice as long as those for Murphy and reliability curves,
@@ -52,8 +52,6 @@ tr <- triptych(ex_binary) |>
 regions(tr$murphy)
 regions(tr$reliability)
 regions(tr$roc)
-regions(tr$mcbdsc)
-
 
 }
 \seealso{
