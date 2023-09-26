@@ -39,20 +39,26 @@ for consistency regions.}
 \value{
 A list of tibbles that contain the information to draw confidence regions.
 The length is equal to the number of forecasting methods in \code{x}.
-
-For the documentation of the tibble structure see \code{\link[=murphy]{murphy()}}, \code{\link[=reliability]{reliability()}}, or \code{\link[=roc]{roc()}}, respectively.
 }
 \description{
+This function is intended to be called from \code{\link[=add_consistency]{add_consistency()}} or \code{\link[=add_confidence]{add_confidence()}},
+by specifying \code{"resampling_Bernoulli"} in the respective \code{method} argument.
+}
+\details{
 Bootstrap (binary) observation resampling assumes conditionally independent observations given the forecast value.
 A given number of bootstrap samples are the basis for pointwise computed confidence/consistency intervals.
 For every bootstrap sample, we sample observations from a Bernoulli distribution conditional on (recalibrated) forecast values.
 }
 \examples{
+\dontrun{
 data(ex_binary, package = "triptych")
-tr <- triptych(ex_binary) |> dplyr::slice(1, 9)
+tr_consistency <- triptych(ex_binary) |>
+  dplyr::slice(1, 9) |>
+  add_consistency(method = "resampling_Bernoulli", n_boot = 50)
 
-resampling_Bernoulli(tr$murphy, n_boot = 50) |> str()
-resampling_Bernoulli(tr$reliability, position = "estimate", n_boot = 50) |> str()
-resampling_Bernoulli(tr$roc, n_boot = 50) |> str()
+tr_confidence <- triptych(ex_binary) |>
+  dplyr::slice(1, 9) |>
+  add_confidence(method = "resampling_Bernoulli", n_boot = 50)
+}
 
 }

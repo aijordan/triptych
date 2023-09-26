@@ -1,5 +1,9 @@
 #' Bootstrap case resampling for triptych objects
 #' 
+#' This function is intended to be called from [add_confidence()],
+#' by specifying `"resampling_cases"` in the `method` argument.
+#' 
+#' @details
 #' Case resampling assumes independent and identically distributed forecast-observation pairs.
 #' A given number of bootstrap samples are the basis for pointwise computed confidence/consistency intervals.
 #' For every bootstrap sample, we draw forecast-observations pairs with replacement until the size of the original data set is reached.
@@ -14,16 +18,18 @@
 #' @return
 #' A list of tibbles that contain the information to draw confidence regions.
 #' The length is equal to the number of forecasting methods in `x`.
-#' 
-#' For the documentation of the tibble structure see [murphy()], [reliability()], or [roc()], respectively.
 #'
 #' @examples
+#' \dontrun{
 #' data(ex_binary, package = "triptych")
-#' tr <- triptych(ex_binary) |> dplyr::slice(1, 9)
+#' tr_consistency <- triptych(ex_binary) |>
+#'   dplyr::slice(1, 9) |>
+#'   add_consistency(method = "resampling_cases", n_boot = 50)
 #'
-#' resampling_cases(tr$murphy, n_boot = 50) |> str()
-#' resampling_cases(tr$reliability, n_boot = 50) |> str()
-#' resampling_cases(tr$roc, n_boot = 50) |> str()
+#' tr_confidence <- triptych(ex_binary) |>
+#'   dplyr::slice(1, 9) |>
+#'   add_confidence(method = "resampling_cases", n_boot = 50)
+#' }
 #'
 #' @export
 resampling_cases <- function(x, level = 0.9, n_boot = 1000, ...) {
@@ -32,6 +38,10 @@ resampling_cases <- function(x, level = 0.9, n_boot = 1000, ...) {
 
 #' Bootstrap (binary) observation resampling for triptych objects
 #' 
+#' This function is intended to be called from [add_consistency()] or [add_confidence()],
+#' by specifying `"resampling_Bernoulli"` in the respective `method` argument.
+#'
+#' @details
 #' Bootstrap (binary) observation resampling assumes conditionally independent observations given the forecast value.
 #' A given number of bootstrap samples are the basis for pointwise computed confidence/consistency intervals.
 #' For every bootstrap sample, we sample observations from a Bernoulli distribution conditional on (recalibrated) forecast values.
@@ -46,17 +56,19 @@ resampling_cases <- function(x, level = 0.9, n_boot = 1000, ...) {
 #' @return
 #' A list of tibbles that contain the information to draw confidence regions.
 #' The length is equal to the number of forecasting methods in `x`.
-#' 
-#' For the documentation of the tibble structure see [murphy()], [reliability()], or [roc()], respectively.
 #'
 #' @examples
+#' \dontrun{
 #' data(ex_binary, package = "triptych")
-#' tr <- triptych(ex_binary) |> dplyr::slice(1, 9)
+#' tr_consistency <- triptych(ex_binary) |>
+#'   dplyr::slice(1, 9) |>
+#'   add_consistency(method = "resampling_Bernoulli", n_boot = 50)
 #'
-#' resampling_Bernoulli(tr$murphy, n_boot = 50) |> str()
-#' resampling_Bernoulli(tr$reliability, position = "estimate", n_boot = 50) |> str()
-#' resampling_Bernoulli(tr$roc, n_boot = 50) |> str()
-#'
+#' tr_confidence <- triptych(ex_binary) |>
+#'   dplyr::slice(1, 9) |>
+#'   add_confidence(method = "resampling_Bernoulli", n_boot = 50)
+#' }
+#' 
 #' @export
 resampling_Bernoulli <- function(x, level = 0.9, n_boot = 1000, ...) {
   UseMethod("resampling_Bernoulli")

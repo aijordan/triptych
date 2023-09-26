@@ -34,6 +34,14 @@ A tibble with the relevant information describing
 the diagnostic estimate
 (Murphy curve, reliability curve, ROC curve, score decomposition)
 for all supplied forecasting methods.
+
+For a Murphy curve, a tibble with columns: \code{forecast}, \code{knot} (the threshold value), \code{limit} ("left" or "right" in \code{knot}), \code{mean_score}.
+
+For a reliability curve, a tibble with columns: \code{forecast}, \code{CEP}, \code{x} (the knots of the isotonic regression estimate).
+
+For a ROC curve, a tibble with columns: \code{forecast}, \code{FAR} (false alarm rate), \code{HR} (hit rate).
+
+For a MCBDSC decomposition, a tibble with columns: \code{forecast}, \code{mean_score}, \code{MCB} (miscalibration), \code{DSC} (discrimination), \code{UNC} (uncertainty).
 }
 \description{
 Accessing diagnostic estimate data
