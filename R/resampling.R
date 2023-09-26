@@ -1,4 +1,8 @@
 #' Bootstrap case resampling for triptych objects
+#' 
+#' Case resampling assumes independent and identically distributed forecast-observation pairs.
+#' A given number of bootstrap samples are the basis for pointwise computed confidence/consistency intervals.
+#' For every bootstrap sample, we draw forecast-observations pairs with replacement until the size of the original data set is reached.
 #'
 #' @param x One of the triptych objects.
 #' @param level A single value that determines which quantiles of
@@ -10,24 +14,27 @@
 #' @return
 #' A list of tibbles that contain the information to draw confidence regions.
 #' The length is equal to the number of forecasting methods in `x`.
+#' 
+#' For the documentation of the tibble structure see [murphy()], [reliability()], or [roc()], respectively.
 #'
 #' @examples
-#' # Triptych construction
-#' forecasts <- matrix(runif(300), ncol = 3)
-#' colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
-#' observations <- rbinom(100, 1, forecasts[, 1])
-#' tr <- triptych(forecasts, observations)
+#' data(ex_binary, package = "triptych")
+#' tr <- triptych(ex_binary) |> dplyr::slice(1, 9)
 #'
-#' resampling_cases(tr$murphy, n_boot = 50)
-#' resampling_cases(tr$reliability, n_boot = 50)
-#' resampling_cases(tr$roc, n_boot = 50)
+#' resampling_cases(tr$murphy, n_boot = 50) |> str()
+#' resampling_cases(tr$reliability, n_boot = 50) |> str()
+#' resampling_cases(tr$roc, n_boot = 50) |> str()
 #'
 #' @export
 resampling_cases <- function(x, level = 0.9, n_boot = 1000, ...) {
   UseMethod("resampling_cases")
 }
 
-#' Bootstrap observation resampling for triptych objects
+#' Bootstrap (binary) observation resampling for triptych objects
+#' 
+#' Bootstrap (binary) observation resampling assumes conditionally independent observations given the forecast value.
+#' A given number of bootstrap samples are the basis for pointwise computed confidence/consistency intervals.
+#' For every bootstrap sample, we sample observations from a Bernoulli distribution conditional on (recalibrated) forecast values.
 #'
 #' @param x One of the triptych objects.
 #' @param level A single value that determines which quantiles of
@@ -39,17 +46,16 @@ resampling_cases <- function(x, level = 0.9, n_boot = 1000, ...) {
 #' @return
 #' A list of tibbles that contain the information to draw confidence regions.
 #' The length is equal to the number of forecasting methods in `x`.
+#' 
+#' For the documentation of the tibble structure see [murphy()], [reliability()], or [roc()], respectively.
 #'
 #' @examples
-#' # Triptych construction
-#' forecasts <- matrix(runif(300), ncol = 3)
-#' colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
-#' observations <- rbinom(100, 1, forecasts[, 1])
-#' tr <- triptych(forecasts, observations)
+#' data(ex_binary, package = "triptych")
+#' tr <- triptych(ex_binary) |> dplyr::slice(1, 9)
 #'
-#' resampling_cases(tr$murphy, n_boot = 50)
-#' resampling_cases(tr$reliability, position = "estimate", n_boot = 50)
-#' resampling_cases(tr$roc, n_boot = 50)
+#' resampling_Bernoulli(tr$murphy, n_boot = 50) |> str()
+#' resampling_Bernoulli(tr$reliability, position = "estimate", n_boot = 50) |> str()
+#' resampling_Bernoulli(tr$roc, n_boot = 50) |> str()
 #'
 #' @export
 resampling_Bernoulli <- function(x, level = 0.9, n_boot = 1000, ...) {

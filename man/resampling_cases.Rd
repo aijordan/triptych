@@ -30,19 +30,20 @@ bootstrap draws.}
 \value{
 A list of tibbles that contain the information to draw confidence regions.
 The length is equal to the number of forecasting methods in \code{x}.
+
+For the documentation of the tibble structure see \code{\link[=murphy]{murphy()}}, \code{\link[=reliability]{reliability()}}, or \code{\link[=roc]{roc()}}, respectively.
 }
 \description{
-Bootstrap case resampling for triptych objects
+Case resampling assumes independent and identically distributed forecast-observation pairs.
+A given number of bootstrap samples are the basis for pointwise computed confidence/consistency intervals.
+For every bootstrap sample, we draw forecast-observations pairs with replacement until the size of the original data set is reached.
 }
 \examples{
-# Triptych construction
-forecasts <- matrix(runif(300), ncol = 3)
-colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
-observations <- rbinom(100, 1, forecasts[, 1])
-tr <- triptych(forecasts, observations)
+data(ex_binary, package = "triptych")
+tr <- triptych(ex_binary) |> dplyr::slice(1, 9)
 
-resampling_cases(tr$murphy, n_boot = 50)
-resampling_cases(tr$reliability, n_boot = 50)
-resampling_cases(tr$roc, n_boot = 50)
+resampling_cases(tr$murphy, n_boot = 50) |> str()
+resampling_cases(tr$reliability, n_boot = 50) |> str()
+resampling_cases(tr$roc, n_boot = 50) |> str()
 
 }

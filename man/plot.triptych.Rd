@@ -78,12 +78,10 @@ That is, it always draws a plot, even during assignment or within a loop.
 Plot methods for the triptych classes
 }
 \examples{
-forecasts <- matrix(runif(300), ncol = 3)
-colnames(forecasts) <- c("Method_1", "Method_2", "Method_3")
-observations <- rbinom(100, 1, forecasts[, 1])
-tr <- triptych(forecasts, observations)
+data(ex_binary, package = "triptych")
+tr <- triptych(ex_binary)
 
-autoplot(tr)
+dplyr::slice(tr, 1, 3, 6, 9) |> autoplot()
 autoplot(tr$murphy)
 autoplot(tr$reliability)
 autoplot(tr$roc)
