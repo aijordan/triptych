@@ -93,6 +93,18 @@ to determine the diagonal lines along which to determine the estimate.</p></dd>
 the diagnostic estimate
 (Murphy curve, reliability curve, ROC curve, score decomposition)
 for all supplied forecasting methods.</p>
+
+
+<p>For a Murphy curve, a tibble with columns: <code>forecast</code>, <code>knot</code> (the threshold value), <code>limit</code> ("left" or "right" in <code>knot</code>), <code>mean_score</code>.</p>
+
+
+<p>For a reliability curve, a tibble with columns: <code>forecast</code>, <code>CEP</code>, <code>x</code> (the knots of the isotonic regression estimate).</p>
+
+
+<p>For a ROC curve, a tibble with columns: <code>forecast</code>, <code>FAR</code> (false alarm rate), <code>HR</code> (hit rate).</p>
+
+
+<p>For a MCBDSC decomposition, a tibble with columns: <code>forecast</code>, <code>mean_score</code>, <code>MCB</code> (miscalibration), <code>DSC</code> (discrimination), <code>UNC</code> (uncertainty).</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
