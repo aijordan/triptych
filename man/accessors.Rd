@@ -23,6 +23,14 @@ For \code{observations()}: A vector of the observations.
 \description{
 Accessing original forecast and observation data for triptych objects
 }
+\examples{
+data(ex_binary, package = "triptych")
+tr <- triptych(ex_binary)
+
+forecasts(tr)
+observations(tr) 
+
+}
 \seealso{
 \code{\link[=estimates]{estimates()}}, \code{\link[=regions]{regions()}}
 }

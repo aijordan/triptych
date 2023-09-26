@@ -38,6 +38,16 @@ for all supplied forecasting methods.
 \description{
 Accessing diagnostic estimate data
 }
+\examples{
+data(ex_binary, package = "triptych")
+tr <- triptych(ex_binary)
+
+estimates(tr$murphy)
+estimates(tr$reliability)
+estimates(tr$roc)
+estimates(tr$mcbdsc)
+
+}
 \seealso{
 \code{\link[=regions]{regions()}}, \code{\link[=forecasts]{forecasts()}}, \code{\link[=observations]{observations()}}
 }

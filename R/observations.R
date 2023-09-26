@@ -7,6 +7,13 @@
 #' For `forecasts()`: A tibble of the original forecasts in long format.
 #'
 #' For `observations()`: A vector of the observations.
+#' 
+#' @examples
+#' data(ex_binary, package = "triptych")
+#' tr <- triptych(ex_binary)
+#' 
+#' forecasts(tr)
+#' observations(tr) 
 #'
 #' @seealso [estimates()], [regions()]
 #' @name accessors
@@ -23,6 +30,15 @@ NULL
 #'   the diagnostic estimate
 #'   (Murphy curve, reliability curve, ROC curve, score decomposition)
 #'   for all supplied forecasting methods.
+#'   
+#' @examples
+#' data(ex_binary, package = "triptych")
+#' tr <- triptych(ex_binary)
+#' 
+#' estimates(tr$murphy)
+#' estimates(tr$reliability)
+#' estimates(tr$roc)
+#' estimates(tr$mcbdsc)
 #'
 #' @seealso [regions()], [forecasts()], [observations()]
 #' @export
@@ -40,6 +56,18 @@ estimates <- function(x, at, ...) {
 #'   uncertainty quantification of the chosen diagnostic
 #'   (Murphy curve, reliability curve, ROC curve, score decomposition)
 #'   for all supplied forecasting methods.
+#'   
+#' @examples
+#' data(ex_binary, package = "triptych")
+#' tr <- triptych(ex_binary) |>
+#'   dplyr::slice(1, 9) |>
+#'   add_confidence(level = 0.9, n_boot = 100)
+#' 
+#' regions(tr$murphy)
+#' regions(tr$reliability)
+#' regions(tr$roc)
+#' regions(tr$mcbdsc)
+#' 
 #'
 #' @seealso [estimates()], [forecasts()], [observations()]
 #' @export

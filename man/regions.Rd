@@ -33,6 +33,19 @@ for all supplied forecasting methods.
 \description{
 Accessing confidence/consistency region data
 }
+\examples{
+data(ex_binary, package = "triptych")
+tr <- triptych(ex_binary) |>
+  dplyr::slice(1, 9) |>
+  add_confidence(level = 0.9, n_boot = 100)
+
+regions(tr$murphy)
+regions(tr$reliability)
+regions(tr$roc)
+regions(tr$mcbdsc)
+
+
+}
 \seealso{
 \code{\link[=estimates]{estimates()}}, \code{\link[=forecasts]{forecasts()}}, \code{\link[=observations]{observations()}}
 }
