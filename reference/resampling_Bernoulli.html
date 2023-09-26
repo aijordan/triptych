@@ -120,14 +120,14 @@ The length is equal to the number of forecasting methods in <code>x</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ X01: tibble [1,000 × 5] (S3: tbl_df/tbl/data.frame)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ threshold: num [1:1000] 0 0.001 0.002 0.003 0.004 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower    : num [1:1000] 0 0.000643 0.001213 0.001754 0.002258 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ upper    : num [1:1000] 0 0.000729 0.001389 0.001994 0.002619 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower    : num [1:1000] 0 0.000641 0.001225 0.001778 0.002282 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ upper    : num [1:1000] 0 0.000749 0.001409 0.002054 0.002683 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ method   : chr [1:1000] "resampling_Bernoulli_50" "resampling_Bernoulli_50" "resampling_Bernoulli_50" "resampling_Bernoulli_50" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ level    : num [1:1000] 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ X09: tibble [1,000 × 5] (S3: tbl_df/tbl/data.frame)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ threshold: num [1:1000] 0 0.001 0.002 0.003 0.004 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower    : num [1:1000] 0 0.00101 0.00201 0.00302 0.00402 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ upper    : num [1:1000] 0 0.00113 0.00225 0.00338 0.0045 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower    : num [1:1000] 0 0.001 0.002 0.003 0.004 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ upper    : num [1:1000] 0 0.0011 0.0022 0.0033 0.0044 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ method   : chr [1:1000] "resampling_Bernoulli_50" "resampling_Bernoulli_50" "resampling_Bernoulli_50" "resampling_Bernoulli_50" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ level    : num [1:1000] 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 ...</span>
 <span class="r-in"><span><span class="fu">resampling_Bernoulli</span><span class="op">(</span><span class="va">tr</span><span class="op">$</span><span class="va">reliability</span>, position <span class="op">=</span> <span class="st">"estimate"</span>, n_boot <span class="op">=</span> <span class="fl">50</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
@@ -141,7 +141,7 @@ The length is equal to the number of forecasting methods in <code>x</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ X09: tibble [1,000 × 5] (S3: tbl_df/tbl/data.frame)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ x     : num [1:1000] 0.00447 0.00996 0.01009 0.01073 0.012 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ lower : num [1:1000] 0 0 0 0 0 0 0 0 0 0 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ upper : num [1:1000] 0.143 0.143 0.143 0.143 0.143 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ upper : num [1:1000] 0.1 0.125 0.171 0.177 0.177 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ method: chr [1:1000] "resampling_Bernoulli_50" "resampling_Bernoulli_50" "resampling_Bernoulli_50" "resampling_Bernoulli_50" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ level : num [1:1000] 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 ...</span>
 <span class="r-in"><span><span class="fu">resampling_Bernoulli</span><span class="op">(</span><span class="va">tr</span><span class="op">$</span><span class="va">roc</span>, n_boot <span class="op">=</span> <span class="fl">50</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
@@ -152,8 +152,8 @@ The length is equal to the number of forecasting methods in <code>x</code>.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ method: chr [1:2002] "resampling_Bernoulli_50" "resampling_Bernoulli_50" "resampling_Bernoulli_50" "resampling_Bernoulli_50" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ level : num [1:2002] 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ X09: tibble [2,002 × 4] (S3: tbl_df/tbl/data.frame)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ FAR   : num [1:2002] 0 0.000192 0.000384 0.000582 0.000792 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ HR    : num [1:2002] 0 0.00188 0.00376 0.00564 0.0075 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ FAR   : num [1:2002] 0 0.000141 0.000281 0.000422 0.000581 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ HR    : num [1:2002] 0 0.00194 0.00388 0.00582 0.00773 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ method: chr [1:2002] "resampling_Bernoulli_50" "resampling_Bernoulli_50" "resampling_Bernoulli_50" "resampling_Bernoulli_50" ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ level : num [1:2002] 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 0.9 ...</span>
 <span class="r-in"><span></span></span>
