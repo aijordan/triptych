@@ -31,7 +31,7 @@ NULL
 #'   (Murphy curve, reliability curve, ROC curve, score decomposition)
 #'   for all supplied forecasting methods.
 #'   
-#' For a Murphy curve, a tibble with columns: `forecast`, `knot` (the threshold value), `limit` ("left" or "right" in `knot`), `mean_score`.
+#' For a Murphy curve, a tibble with columns: `forecast`, `knot` (the threshold value), `limit` ("left" or "right" in `knot`, only present if `at = NULL`), `mean_score`.
 #' 
 #' For a reliability curve, a tibble with columns: `forecast`, `CEP`, `x` (the knots of the isotonic regression estimate).
 #' 
