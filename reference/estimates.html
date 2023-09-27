@@ -95,7 +95,7 @@ the diagnostic estimate
 for all supplied forecasting methods.</p>
 
 
-<p>For a Murphy curve, a tibble with columns: <code>forecast</code>, <code>knot</code> (the threshold value), <code>limit</code> ("left" or "right" in <code>knot</code>), <code>mean_score</code>.</p>
+<p>For a Murphy curve, a tibble with columns: <code>forecast</code>, <code>knot</code> (the threshold value), <code>limit</code> ("left" or "right" in <code>knot</code>, only present if <code>at = NULL</code>), <code>mean_score</code>.</p>
 
 
 <p>For a reliability curve, a tibble with columns: <code>forecast</code>, <code>CEP</code>, <code>x</code> (the knots of the isotonic regression estimate).</p>

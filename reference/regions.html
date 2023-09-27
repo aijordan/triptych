@@ -89,7 +89,7 @@ for all supplied forecasting methods.</p>
 <p>For a Murphy curve, a tibble with columns: <code>forecast</code>, <code>threshold</code>, <code>lower</code>, <code>upper</code>, <code>method</code>, <code>level</code>.</p>
 
 
-<p>For a reliability curve, a tibble with columns: <code>forecast</code>, <code>x</code> (forcast values), <code>lower</code>, <code>upper</code>, <code>method</code>, <code>level</code>.</p>
+<p>For a reliability curve, a tibble with columns: <code>forecast</code>, <code>x</code> (forecast values), <code>lower</code>, <code>upper</code>, <code>method</code>, <code>level</code>.</p>
 
 
 <p>For a ROC curve, a tibble with columns: <code>forecast</code>, <code>FAR</code> (false alarm rate), <code>HR</code> (hit rate), <code>method</code>, <code>level</code>.
@@ -115,15 +115,15 @@ Here, \(\pi_1 = 1 - \pi_0\) is the unconditional event probability.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    forecast threshold    lower    upper method               level</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> X01        0       0        0        resampling_cases_100   0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> X01        0.001<span style="text-decoration: underline;">00</span> 0.000<span style="text-decoration: underline;">645</span> 0.000<span style="text-decoration: underline;">733</span> resampling_cases_100   0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> X01        0.002<span style="text-decoration: underline;">00</span> 0.001<span style="text-decoration: underline;">21</span>  0.001<span style="text-decoration: underline;">39</span>  resampling_cases_100   0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> X01        0.003<span style="text-decoration: underline;">00</span> 0.001<span style="text-decoration: underline;">75</span>  0.002<span style="text-decoration: underline;">02</span>  resampling_cases_100   0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> X01        0.001<span style="text-decoration: underline;">00</span> 0.000<span style="text-decoration: underline;">641</span> 0.000<span style="text-decoration: underline;">735</span> resampling_cases_100   0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> X01        0.002<span style="text-decoration: underline;">00</span> 0.001<span style="text-decoration: underline;">21</span>  0.001<span style="text-decoration: underline;">38</span>  resampling_cases_100   0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> X01        0.003<span style="text-decoration: underline;">00</span> 0.001<span style="text-decoration: underline;">75</span>  0.002<span style="text-decoration: underline;">01</span>  resampling_cases_100   0.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> X01        0.004<span style="text-decoration: underline;">00</span> 0.002<span style="text-decoration: underline;">27</span>  0.002<span style="text-decoration: underline;">61</span>  resampling_cases_100   0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> X01        0.005<span style="text-decoration: underline;">01</span> 0.002<span style="text-decoration: underline;">79</span>  0.003<span style="text-decoration: underline;">24</span>  resampling_cases_100   0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> X01        0.006<span style="text-decoration: underline;">01</span> 0.003<span style="text-decoration: underline;">30</span>  0.003<span style="text-decoration: underline;">83</span>  resampling_cases_100   0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> X01        0.007<span style="text-decoration: underline;">01</span> 0.003<span style="text-decoration: underline;">74</span>  0.004<span style="text-decoration: underline;">34</span>  resampling_cases_100   0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> X01        0.005<span style="text-decoration: underline;">01</span> 0.002<span style="text-decoration: underline;">80</span>  0.003<span style="text-decoration: underline;">22</span>  resampling_cases_100   0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> X01        0.006<span style="text-decoration: underline;">01</span> 0.003<span style="text-decoration: underline;">30</span>  0.003<span style="text-decoration: underline;">80</span>  resampling_cases_100   0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> X01        0.007<span style="text-decoration: underline;">01</span> 0.003<span style="text-decoration: underline;">71</span>  0.004<span style="text-decoration: underline;">32</span>  resampling_cases_100   0.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> X01        0.008<span style="text-decoration: underline;">01</span> 0.004<span style="text-decoration: underline;">21</span>  0.004<span style="text-decoration: underline;">90</span>  resampling_cases_100   0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> X01        0.009<span style="text-decoration: underline;">01</span> 0.004<span style="text-decoration: underline;">72</span>  0.005<span style="text-decoration: underline;">50</span>  resampling_cases_100   0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> X01        0.009<span style="text-decoration: underline;">01</span> 0.004<span style="text-decoration: underline;">72</span>  0.005<span style="text-decoration: underline;">44</span>  resampling_cases_100   0.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,990 more rows</span></span>
 <span class="r-in"><span><span class="fu">regions</span><span class="op">(</span><span class="va">tr</span><span class="op">$</span><span class="va">reliability</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,998 × 6</span></span>
@@ -155,9 +155,6 @@ Here, \(\pi_1 = 1 - \pi_0\) is the unconditional event probability.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> X01          0 0.016<span style="text-decoration: underline;">7</span>  resampling_cases_100   0.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> X01          0 0.018<span style="text-decoration: underline;">8</span>  resampling_cases_100   0.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3,994 more rows</span></span>
-<span class="r-in"><span><span class="fu">regions</span><span class="op">(</span><span class="va">tr</span><span class="op">$</span><span class="va">mcbdsc</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
