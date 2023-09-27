@@ -18,7 +18,7 @@ Description: Overall predictive performance is measured by a mean score
     See Dimitriadis, Gneiting, Jordan, Vogel (2023) <arXiv:2301.10803>.
 License: MIT + file LICENSE
 Depends:
-    R (>= 4.1)
+    R (>= 4.2)
 Imports:
     ggplot2,
     patchwork,
