@@ -9,6 +9,7 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/triptych)](https://CRAN.R-project.org/package=triptych)
+[![R-CMD-check](https://github.com/aijordan/triptych/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/aijordan/triptych/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 Overall predictive performance is measured by a mean score (or loss),
