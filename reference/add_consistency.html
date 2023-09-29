@@ -45,7 +45,7 @@ a miscalibrated forecast."><!-- mathjax --><script src="https://cdnjs.cloudflare
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Adding consistency regions for reliability curves</h1>
-      <small class="dont-index">Source: <a href="https://github.com/aijordan/triptych/blob/HEAD/R/observations.R" class="external-link"><code>R/observations.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/aijordan/triptych/blob/HEAD/R/mutators.R" class="external-link"><code>R/mutators.R</code></a></small>
       <div class="d-none name"><code>add_consistency.Rd</code></div>
     </div>
 
@@ -57,7 +57,7 @@ a miscalibrated forecast.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">add_consistency</span><span class="op">(</span><span class="va">x</span>, <span class="va">level</span>, <span class="va">method</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">add_consistency</span><span class="op">(</span><span class="va">x</span>, level <span class="op">=</span> <span class="fl">0.9</span>, method <span class="op">=</span> <span class="st">"resampling_Bernoulli"</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -91,26 +91,28 @@ reliability curve component.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">ex_binary</span>, package <span class="op">=</span> <span class="st">"triptych"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Construct triptych object (with reliability curve component) and select 4 forecasts</span></span></span>
+<span class="r-in"><span><span class="co"># Construct triptych object (with reliability curve component) and select 2 forecasts</span></span></span>
 <span class="r-in"><span><span class="va">tr</span> <span class="op">&lt;-</span> <span class="fu"><a href="triptych.html">triptych</a></span><span class="op">(</span><span class="va">ex_binary</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">6</span>, <span class="fl">9</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">9</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">tr</span> <span class="op">&lt;-</span> <span class="fu">add_consistency</span><span class="op">(</span><span class="va">tr</span>, level <span class="op">=</span> <span class="fl">0.9</span>, n_boot <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co"># Bootstrap resampling is expensive</span></span></span>
+<span class="r-in"><span><span class="co"># (the number of bootstrap samples is small to keep execution times short)</span></span></span>
+<span class="r-in"><span><span class="va">tr</span> <span class="op">&lt;-</span> <span class="fu">add_consistency</span><span class="op">(</span><span class="va">tr</span>, level <span class="op">=</span> <span class="fl">0.9</span>, method <span class="op">=</span> <span class="st">"resampling_Bernoulli"</span>, n_boot <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="regions.html">regions</a></span><span class="op">(</span><span class="va">tr</span><span class="op">$</span><span class="va">reliability</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3,991 × 6</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    forecast        x lower upper method                   level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> X01      1.19<span style="color: #949494;">e</span><span style="color: #BB0000;">-23</span>     0     0 resampling_Bernoulli_100   0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> X01      3.84<span style="color: #949494;">e</span><span style="color: #BB0000;">-23</span>     0     0 resampling_Bernoulli_100   0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> X01      9.45<span style="color: #949494;">e</span><span style="color: #BB0000;">-22</span>     0     0 resampling_Bernoulli_100   0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> X01      9.82<span style="color: #949494;">e</span><span style="color: #BB0000;">-20</span>     0     0 resampling_Bernoulli_100   0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> X01      1.13<span style="color: #949494;">e</span><span style="color: #BB0000;">-19</span>     0     0 resampling_Bernoulli_100   0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> X01      4.73<span style="color: #949494;">e</span><span style="color: #BB0000;">-17</span>     0     0 resampling_Bernoulli_100   0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> X01      1.40<span style="color: #949494;">e</span><span style="color: #BB0000;">-16</span>     0     0 resampling_Bernoulli_100   0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> X01      6.33<span style="color: #949494;">e</span><span style="color: #BB0000;">-16</span>     0     0 resampling_Bernoulli_100   0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> X01      1.48<span style="color: #949494;">e</span><span style="color: #BB0000;">-15</span>     0     0 resampling_Bernoulli_100   0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> X01      7.97<span style="color: #949494;">e</span><span style="color: #BB0000;">-15</span>     0     0 resampling_Bernoulli_100   0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3,981 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 1,998 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    forecast        x lower upper method                  level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> X01      1.19<span style="color: #949494;">e</span><span style="color: #BB0000;">-23</span>     0     0 resampling_Bernoulli_20   0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> X01      3.84<span style="color: #949494;">e</span><span style="color: #BB0000;">-23</span>     0     0 resampling_Bernoulli_20   0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> X01      9.45<span style="color: #949494;">e</span><span style="color: #BB0000;">-22</span>     0     0 resampling_Bernoulli_20   0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> X01      9.82<span style="color: #949494;">e</span><span style="color: #BB0000;">-20</span>     0     0 resampling_Bernoulli_20   0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> X01      1.13<span style="color: #949494;">e</span><span style="color: #BB0000;">-19</span>     0     0 resampling_Bernoulli_20   0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> X01      4.73<span style="color: #949494;">e</span><span style="color: #BB0000;">-17</span>     0     0 resampling_Bernoulli_20   0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> X01      1.40<span style="color: #949494;">e</span><span style="color: #BB0000;">-16</span>     0     0 resampling_Bernoulli_20   0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> X01      6.33<span style="color: #949494;">e</span><span style="color: #BB0000;">-16</span>     0     0 resampling_Bernoulli_20   0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> X01      1.48<span style="color: #949494;">e</span><span style="color: #BB0000;">-15</span>     0     0 resampling_Bernoulli_20   0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> X01      7.97<span style="color: #949494;">e</span><span style="color: #BB0000;">-15</span>     0     0 resampling_Bernoulli_20   0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1,988 more rows</span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
