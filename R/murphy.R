@@ -230,7 +230,8 @@ has_regions.triptych_murphy <- function(x, ...) {
 
 #' @export
 add_confidence.triptych_murphy <- function(x, level = 0.9, method = "resampling_cases", ...) {
-  m <- get(method)(x, level, ...)
+  stopifnot(method %in% c("resampling_cases", "resampling_Bernoulli"))
+  m <- get(method)(x, level = level, ...)
   for (i in seq_along(x)) {
     x[[i]]$region <- m[[i]]
   }

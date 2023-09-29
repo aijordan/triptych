@@ -57,10 +57,10 @@ data(ex_binary, package = "triptych")
 
 tr_consistency <- triptych(ex_binary) |>
   dplyr::slice(1, 9) |>
-  add_consistency(method = "resampling_Bernoulli", n_boot = 20)
+  add_consistency(level = 0.9, method = "resampling_Bernoulli", n_boot = 20)
 
 tr_confidence <- triptych(ex_binary) |>
   dplyr::slice(1, 9) |>
-  add_confidence(method = "resampling_Bernoulli", n_boot = 20)
+  add_confidence(level = 0.9, method = "resampling_Bernoulli", n_boot = 20)
 
 }

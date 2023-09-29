@@ -27,6 +27,8 @@
 #' regions(tr$reliability)
 #' regions(tr$roc)
 #' 
+#' #' @seealso [resampling_cases()], [resampling_Bernoulli()]
+#' 
 #' @export
 add_confidence <- function(x, level = 0.9, method = "resampling_cases", ...) {
   UseMethod("add_confidence")
@@ -40,7 +42,7 @@ add_confidence <- function(x, level = 0.9, method = "resampling_cases", ...) {
 #'
 #' @param x An object to which a consistency region should be added.
 #' @param level A single value for the level of confidence.
-#' @param method A string that gives the name of method to generate the consistency regions. Currently, one of: "resampling_cases", "resampling_Bernoulli".
+#' @param method A string that gives the name of method to generate the consistency regions. Currently, only: "resampling_Bernoulli".
 #' @param ... Additional arguments passed to methods.
 #'
 #' @return 
@@ -59,6 +61,8 @@ add_confidence <- function(x, level = 0.9, method = "resampling_cases", ...) {
 #' # (the number of bootstrap samples is small to keep execution times short)
 #' tr <- add_consistency(tr, level = 0.9, method = "resampling_Bernoulli", n_boot = 20)
 #' regions(tr$reliability)
+#' 
+#' @seealso [resampling_Bernoulli()]
 #' 
 #' @export
 add_consistency <- function(x, level = 0.9, method = "resampling_Bernoulli", ...) {

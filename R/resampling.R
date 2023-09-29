@@ -5,7 +5,7 @@
 #' 
 #' @details
 #' Case resampling assumes independent and identically distributed forecast-observation pairs.
-#' A given number of bootstrap samples are the basis for pointwise computed confidence/consistency intervals.
+#' A given number of bootstrap samples are the basis for pointwise computed confidence intervals.
 #' For every bootstrap sample, we draw forecast-observations pairs with replacement until the size of the original data set is reached.
 #'
 #' @param x One of the triptych objects.
@@ -24,12 +24,8 @@
 #' 
 #' # Bootstrap resampling is expensive
 #' # (the number of bootstrap samples is small to keep execution times short)
-#' 
-#' tr_consistency <- triptych(ex_binary) |>
-#'   dplyr::slice(1, 9) |>
-#'   add_consistency(level = 0.9, method = "resampling_Bernoulli", n_boot = 20)
 #'
-#' tr_confidence <- triptych(ex_binary) |>
+#' tr <- triptych(ex_binary) |>
 #'   dplyr::slice(1, 9) |>
 #'   add_confidence(level = 0.9, method = "resampling_cases", n_boot = 20)
 #'
@@ -67,11 +63,11 @@ resampling_cases <- function(x, level = 0.9, n_boot = 1000, ...) {
 #' 
 #' tr_consistency <- triptych(ex_binary) |>
 #'   dplyr::slice(1, 9) |>
-#'   add_consistency(method = "resampling_Bernoulli", n_boot = 20)
+#'   add_consistency(level = 0.9, method = "resampling_Bernoulli", n_boot = 20)
 #'
 #' tr_confidence <- triptych(ex_binary) |>
 #'   dplyr::slice(1, 9) |>
-#'   add_confidence(method = "resampling_Bernoulli", n_boot = 20)
+#'   add_confidence(level = 0.9, method = "resampling_Bernoulli", n_boot = 20)
 #' 
 #' @export
 resampling_Bernoulli <- function(x, level = 0.9, n_boot = 1000, ...) {

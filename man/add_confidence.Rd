@@ -38,4 +38,6 @@ regions(tr$murphy)
 regions(tr$reliability)
 regions(tr$roc)
 
+#' @seealso [resampling_cases()], [resampling_Bernoulli()]
+
 }

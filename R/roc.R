@@ -231,6 +231,7 @@ has_regions.triptych_roc <- function(x, ...) {
 
 #' @export
 add_confidence.triptych_roc <- function(x, level = 0.9, method = "resampling_cases", ...) {
+  stopifnot(method %in% c("resampling_cases", "resampling_Bernoulli"))
   m <- get(method)(x, level, ...)
   for (i in seq_along(x)) {
     x[[i]]$region <- m[[i]]

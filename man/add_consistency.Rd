@@ -11,7 +11,7 @@ add_consistency(x, level = 0.9, method = "resampling_Bernoulli", ...)
 
 \item{level}{A single value for the level of confidence.}
 
-\item{method}{A string that gives the name of method to generate the consistency regions. Currently, one of: "resampling_cases", "resampling_Bernoulli".}
+\item{method}{A string that gives the name of method to generate the consistency regions. Currently, only: "resampling_Bernoulli".}
 
 \item{...}{Additional arguments passed to methods.}
 }
@@ -37,4 +37,7 @@ tr <- triptych(ex_binary) |>
 tr <- add_consistency(tr, level = 0.9, method = "resampling_Bernoulli", n_boot = 20)
 regions(tr$reliability)
 
+}
+\seealso{
+\code{\link[=resampling_Bernoulli]{resampling_Bernoulli()}}
 }

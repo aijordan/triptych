@@ -230,7 +230,8 @@ has_regions.triptych_reliability <- function(x, ...) {
 
 #' @export
 add_confidence.triptych_reliability <- function(x, level = 0.9, method = "resampling_cases", ...) {
-  m <- get(method)(x, level, ...)
+  stopifnot(method %in% c("resampling_cases", "resampling_Bernoulli"))
+  m <- get(method)(x, level = level, position = "estimate", ...)
   for (i in seq_along(x)) {
     x[[i]]$region <- m[[i]]
   }
@@ -239,7 +240,8 @@ add_confidence.triptych_reliability <- function(x, level = 0.9, method = "resamp
 
 #' @export
 add_consistency.triptych_reliability <- function(x, level = 0.9, method = "resampling_Bernoulli", ...) {
-  m <- get(method)(x, level = level, ...)
+  stopifnot(identical(method, "resampling_Bernoulli"))
+  m <- get(method)(x, level = level, position = "diagonal", ...)
   for (i in seq_along(x)) {
     x[[i]]$region <- m[[i]]
   }
