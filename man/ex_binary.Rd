@@ -5,8 +5,6 @@
 \alias{ex_binary}
 \title{Example data set of binary observations and probability forecasts}
 \format{
-\subsection{\code{ex_binary}}{
-
 A data frame with 1,000 rows and 11 columns, generated as described in 'Details':
 \describe{
 \item{y}{observations}
@@ -20,7 +18,6 @@ A data frame with 1,000 rows and 11 columns, generated as described in 'Details'
 \item{X08}{forecasts, less information than X07, overconfident: \eqn{a = 4}, \eqn{b = 4}}
 \item{X09}{forecasts, less information than X08, negative bias: \eqn{a = 5/3}, \eqn{b = 3/5}}
 \item{X10}{forecasts, least information, positive bias: \eqn{a = 2/3}, \eqn{b = 3/2}}
-}
 }
 }
 \usage{

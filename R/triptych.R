@@ -24,18 +24,18 @@
 #'
 #' @examples
 #' data(ex_binary, package = "triptych")
-#' # Construct and inspect
+#' 
 #' tr <- triptych(ex_binary)
-#' # or: tr <- triptych(ex_binary[2:11], ex_binary[1])
 #' tr
-#' class(tr)
 #' 
 #' # 1. Choose 4 predictions
 #' # 2. Add consistency bands (for reliability curves)
+#' #    (Bootstrap resampling is expensive, the number of bootstrap samples
+#' #     is small to keep execution times short)
 #' # 3. Create patchwork object
 #' # 4. Adjust the title of the legend
 #' dplyr::slice(tr, 1, 3, 6, 9) |>
-#'   add_consistency(level = 0.9, n_boot = 100) |>
+#'   add_consistency(level = 0.9, method = "resampling_Bernoulli", n_boot = 20) |>
 #'   autoplot() &
 #'   ggplot2::guides(colour = ggplot2::guide_legend("Forecast"))
 #'
@@ -90,14 +90,6 @@ vec_ptype2.triptych.triptych <- function(x, y, ...) {
 triptych_ptype2 <- function(x, y, ...) {
   out <- tib_ptype2(x, y)
   new_triptych(out, y = attr(x, "y"))
-}
-
-
-add_forecast <- function(x, ...) {
-  z <- vec_cast_common(..., .to = x)
-  f <- \(...) vec_rbind(..., .names_to = "forecast")
-  print(z)
-  vec_rbind(x, do.call(f, z))
 }
 
 #' @export

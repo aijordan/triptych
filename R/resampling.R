@@ -21,13 +21,17 @@
 #'
 #' @examples
 #' data(ex_binary, package = "triptych")
+#' 
+#' # Bootstrap resampling is expensive
+#' # (the number of bootstrap samples is small to keep execution times short)
+#' 
 #' tr_consistency <- triptych(ex_binary) |>
 #'   dplyr::slice(1, 9) |>
-#'   add_consistency(method = "resampling_cases", n_boot = 50)
+#'   add_consistency(level = 0.9, method = "resampling_Bernoulli", n_boot = 20)
 #'
 #' tr_confidence <- triptych(ex_binary) |>
 #'   dplyr::slice(1, 9) |>
-#'   add_confidence(method = "resampling_cases", n_boot = 50)
+#'   add_confidence(level = 0.9, method = "resampling_cases", n_boot = 20)
 #'
 #' @export
 resampling_cases <- function(x, level = 0.9, n_boot = 1000, ...) {
@@ -57,23 +61,27 @@ resampling_cases <- function(x, level = 0.9, n_boot = 1000, ...) {
 #'
 #' @examples
 #' data(ex_binary, package = "triptych")
+#' 
+#' # Bootstrap resampling is expensive
+#' # (the number of bootstrap samples is small to keep execution times short)
+#' 
 #' tr_consistency <- triptych(ex_binary) |>
 #'   dplyr::slice(1, 9) |>
-#'   add_consistency(method = "resampling_Bernoulli", n_boot = 50)
+#'   add_consistency(method = "resampling_Bernoulli", n_boot = 20)
 #'
 #' tr_confidence <- triptych(ex_binary) |>
 #'   dplyr::slice(1, 9) |>
-#'   add_confidence(method = "resampling_Bernoulli", n_boot = 50)
+#'   add_confidence(method = "resampling_Bernoulli", n_boot = 20)
 #' 
 #' @export
 resampling_Bernoulli <- function(x, level = 0.9, n_boot = 1000, ...) {
   UseMethod("resampling_Bernoulli")
 }
 
-# todo
-resampling_residuals <- function(x, ...) {
-  UseMethod("resampling_residuals")
-}
+# # todo
+# resampling_residuals <- function(x, ...) {
+#   UseMethod("resampling_residuals")
+# }
 
 bootstrap_sample_cases <- function(x, y, n_boot, diagram, at, ...) {
   stopifnot(length(x) == length(y))

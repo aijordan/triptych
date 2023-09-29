@@ -19,19 +19,17 @@
 #'   }
 #'   Access is most convenient through [estimates()], [regions()], and [forecasts()].
 #'
-#' @seealso Accessors: [estimates()], [regions()], [forecasts()]
+#' @seealso Accessors: [estimates()], [regions()], [forecasts()], [observations()]
 #'
 #'   Adding uncertainty quantification: [add_confidence()]
 #'
-#'   Visualization: [plot.triptych()], [autoplot.triptych()]
+#'   Visualization: [plot.triptych_reliability()], [autoplot.triptych_reliability()]
 #'
 #' @examples
 #' data(ex_binary, package = "triptych")
-#' # Construct and inspect
+#' 
 #' rel <- reliability(ex_binary)
-#' # or: rel <- reliability(ex_binary[2:11], ex_binary[1])
 #' rel
-#' class(rel)
 #' 
 #' # 1. Choose 4 predictions
 #' # 2. Visualize
@@ -241,7 +239,7 @@ add_confidence.triptych_reliability <- function(x, level = 0.9, method = "resamp
 
 #' @export
 add_consistency.triptych_reliability <- function(x, level = 0.9, method = "resampling_Bernoulli", ...) {
-  m <- get(method)(x, level = level, position = "diagonal", ...)
+  m <- get(method)(x, level = level, ...)
   for (i in seq_along(x)) {
     x[[i]]$region <- m[[i]]
   }

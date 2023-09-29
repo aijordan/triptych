@@ -42,12 +42,16 @@ For every bootstrap sample, we draw forecast-observations pairs with replacement
 }
 \examples{
 data(ex_binary, package = "triptych")
+
+# Bootstrap resampling is expensive
+# (the number of bootstrap samples is small to keep execution times short)
+
 tr_consistency <- triptych(ex_binary) |>
   dplyr::slice(1, 9) |>
-  add_consistency(method = "resampling_cases", n_boot = 50)
+  add_consistency(level = 0.9, method = "resampling_Bernoulli", n_boot = 20)
 
 tr_confidence <- triptych(ex_binary) |>
   dplyr::slice(1, 9) |>
-  add_confidence(method = "resampling_cases", n_boot = 50)
+  add_confidence(level = 0.9, method = "resampling_cases", n_boot = 20)
 
 }

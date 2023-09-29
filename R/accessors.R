@@ -19,6 +19,17 @@
 #' @name accessors
 NULL
 
+#' @rdname accessors
+#' @export
+forecasts <- function(x, ...) {
+  UseMethod("forecasts")
+}
+#' @rdname accessors
+#' @export
+observations <- function(x, ...) {
+  UseMethod("observations")
+}
+
 #' Accessing diagnostic estimate data
 #'
 #' @param x An object from which the estimate information should be extracted.
@@ -77,9 +88,12 @@ estimates <- function(x, at, ...) {
 #'   
 #' @examples
 #' data(ex_binary, package = "triptych")
+#' 
+#' # Bootstrap resampling is expensive
+#' # (the number of bootstrap samples is small to keep execution times short)
 #' tr <- triptych(ex_binary) |>
 #'   dplyr::slice(1, 9) |>
-#'   add_confidence(level = 0.9, n_boot = 100)
+#'   add_confidence(level = 0.9, method = "resampling_cases", n_boot = 20)
 #' 
 #' regions(tr$murphy)
 #' regions(tr$reliability)
@@ -90,88 +104,15 @@ estimates <- function(x, at, ...) {
 regions <- function(x, ...) {
   UseMethod("regions")
 }
-#' @rdname accessors
-#' @export
-forecasts <- function(x, ...) {
-  UseMethod("forecasts")
-}
-#' @rdname accessors
-#' @export
-observations <- function(x, ...) {
-  UseMethod("observations")
-}
 
 has_regions <- function(x, ...) {
   UseMethod("has_regions")
 }
 
-eval_diag <- function(x, at, ...) {
-  UseMethod("eval_diag")
-}
-
-#' Adding confidence regions
-#' 
-#' Confidence regions are supposed to contain the true "parameter" with a given degree of confidence.
-#' Here, "parameter" refers to a murphy curve, a reliability curve, or a ROC curve, respectively.
-#'
-#' @param x An object to which a confidence region should be added.
-#' @param level A single value for the level of confidence.
-#' @param method A string that gives the name of method to generate the confidence regions. Currently, one of: "resampling_cases", "resampling_Bernoulli".
-#' @param ... Additional arguments passed to methods.
-#' 
-#' @return 
-#' The object given to `x`, but with information about the confidence regions.
-#' This information can be accessed conveniently by using [regions()] on the
-#' curve component of interest.
-#' 
-#' @examples
-#' data(ex_binary, package = "triptych")
-#' 
-#' # Construct triptych object and select 4 forecasts
-#' tr <- triptych(ex_binary) |>
-#'   dplyr::slice(1, 3, 6, 9)
-#' 
-#' tr <- add_confidence(tr, level = 0.9, n_boot = 100)
-#' regions(tr$murphy)
-#' regions(tr$reliability)
-#' regions(tr$roc)
-#' 
-#' @export
-add_confidence <- function(x, level, method, ...) {
-  UseMethod("add_confidence")
-}
-
-#' Adding consistency regions for reliability curves
-#' 
-#' Consistency regions are created under the assumption that the forecasts are calibrated.
-#' A reliability curve that significantly violates the consistency region indicates
-#' a miscalibrated forecast.
-#'
-#' @param x An object to which a consistency region should be added.
-#' @param level A single value for the level of confidence.
-#' @param method A string that gives the name of method to generate the consistency regions. Currently, one of: "resampling_cases", "resampling_Bernoulli".
-#' @param ... Additional arguments passed to methods.
-#'
-#' @return 
-#' The object given to `x`, but with information about the consistency regions.
-#' This information can be accessed conveniently by using [regions()] on the
-#' reliability curve component.
-#' 
-#' @examples
-#' data(ex_binary, package = "triptych")
-#' 
-#' # Construct triptych object (with reliability curve component) and select 4 forecasts
-#' tr <- triptych(ex_binary) |>
-#'   dplyr::slice(1, 3, 6, 9)
-#' 
-#' tr <- add_consistency(tr, level = 0.9, n_boot = 100)
-#' regions(tr$reliability)
-#' 
-#' @export
-add_consistency <- function(x, level, method, ...) {
-  UseMethod("add_consistency")
-}
-
 has_compatible_observations <- function(x, y) {
   isTRUE(all.equal(observations(x), observations(y)))
+}
+
+eval_diag <- function(x, at, ...) {
+  UseMethod("eval_diag")
 }

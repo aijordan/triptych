@@ -41,11 +41,9 @@ the false alarm rate for all threshold values.
 }
 \examples{
 data(ex_binary, package = "triptych")
-# Construct and inspect
+
 rc <- roc(ex_binary)
-# or: rc <- roc(ex_binary[2:11], ex_binary[1])
 rc
-class(rc)
 
 # 1. Choose 4 predictions
 # 2. Visualize
@@ -63,9 +61,9 @@ ggplot(df_est, aes(x = FAR, y = HR, col = forecast)) +
 
 }
 \seealso{
-Accessors: \code{\link[=estimates]{estimates()}}, \code{\link[=regions]{regions()}}, \code{\link[=forecasts]{forecasts()}}
+Accessors: \code{\link[=estimates]{estimates()}}, \code{\link[=regions]{regions()}}, \code{\link[=forecasts]{forecasts()}}, \code{\link[=observations]{observations()}}
 
 Adding uncertainty quantification: \code{\link[=add_confidence]{add_confidence()}}
 
-Visualization: \code{\link[=plot.triptych]{plot.triptych()}}, \code{\link[=autoplot.triptych]{autoplot.triptych()}}
+Visualization: \code{\link[=plot.triptych_roc]{plot.triptych_roc()}}, \code{\link[=autoplot.triptych_roc]{autoplot.triptych_roc()}}
 }

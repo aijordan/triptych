@@ -16,30 +16,22 @@
 #'   and contains a list of named objects:
 #'   \itemize{
 #'     \item `estimate`: A data frame of the score decomposition.
-#'     \item `region`: Either an empty list, or a (yet to be determined) object added
-#'       by [add_confidence()].
+#'     \item `region`: An empty list. Adding confidence regions is not yet supported.
 #'     \item `x`: The numeric vector of original forecasts.
 #'   }
 #'   Access is most convenient through [estimates()], [regions()], and [forecasts()].
 #'
-#' @seealso Accessors: [estimates()], [regions()], [forecasts()]
+#' @seealso Accessors: [estimates()], [regions()], [forecasts()], [observations()]
 #'
-#'   Adding uncertainty quantification: [add_confidence()]
-#'
-#'   Visualization: [plot.triptych()], [autoplot.triptych()]
+#'   Visualization: [plot.triptych_mcbdsc()], [autoplot.triptych_mcbdsc()]
 #'
 #' @examples
-#' #' data(ex_binary, package = "triptych")
-#' # Construct and inspect
+#' data(ex_binary, package = "triptych")
+#'
 #' md <- mcbdsc(ex_binary)
-#' # or: md <- reliability(ex_binary[2:11], ex_binary[1])
 #' md
-#' class(md)
 #' 
-#' # Visualize
 #' autoplot(md)
-#' 
-#' # Show score decomposition
 #' estimates(md)
 #'
 #' @name mcbdsc
@@ -213,50 +205,48 @@ regions.triptych_mcbdsc <- function(x, ...) {
     do.call(g, args = _)
 }
 
-#' @export
-add_confidence.triptych_mcbdsc <- function(x, level = 0.9, method = "resampling_cases", ...) {
-  m <- get(method)(x, level, ...)
-  for (i in seq_along(x)) {
-    x[[i]]$region <- m[[i]]
-  }
-  x
-}
 
-
-resampling_cases.triptych_mcbdsc <- function(x, level = 0.9, n_boot = 1000, ...) {
-  #saved_seed <- .Random.seed
-  y <- observations(x)
-  warning("Experimental: Bootstrapping may be unreliable for the MCB component.")
-  purrr::map(
-    .x = x,
-    level = level,
-    n_boot = n_boot,
-    .f = function(o, level, n_boot) {
-      bootstrap_sample_cases(o$x, y, n_boot, mcbdsc) |>
-        unlist() |>
-        matrix(nrow = n_boot, byrow = TRUE) |>
-        list(s = _)
-    }
-  )
-}
-
-
-resampling_Bernoulli.triptych_mcbdsc <- function(x, level = 0.9, n_boot = 1000, resample_x = TRUE, ...) {
-  #saved_seed <- .Random.seed
-  y <- observations(x)
-  n_obs <- length(y)
-  warning("Experimental: Bootstrapping may be unreliable for the MCB component.")
-
-  purrr::map(
-    .x = x,
-    level = level,
-    n_boot = n_boot,
-    .f = function(o, level, n_boot) {
-      xr <- recalibrate_mean(o$x, y)
-      bootstrap_sample_Bernoulli(o$x, xr, n_boot, mcbdsc, resample_x = resample_x) |>
-        unlist() |>
-        matrix(nrow = n_boot, byrow = TRUE) |>
-        list(s = _)
-    }
-  )
-}
+# add_confidence.triptych_mcbdsc <- function(x, level = 0.9, method = "resampling_cases", ...) {
+#   m <- get(method)(x, level, ...)
+#   for (i in seq_along(x)) {
+#     x[[i]]$region <- m[[i]]
+#   }
+#   x
+# }
+# 
+# resampling_cases.triptych_mcbdsc <- function(x, level = 0.9, n_boot = 1000, ...) {
+#   #saved_seed <- .Random.seed
+#   y <- observations(x)
+#   warning("Experimental: Bootstrapping may be unreliable for the MCB component.")
+#   purrr::map(
+#     .x = x,
+#     level = level,
+#     n_boot = n_boot,
+#     .f = function(o, level, n_boot) {
+#       bootstrap_sample_cases(o$x, y, n_boot, mcbdsc) |>
+#         unlist() |>
+#         matrix(nrow = n_boot, byrow = TRUE) |>
+#         list(s = _)
+#     }
+#   )
+# }
+# 
+# resampling_Bernoulli.triptych_mcbdsc <- function(x, level = 0.9, n_boot = 1000, resample_x = TRUE, ...) {
+#   #saved_seed <- .Random.seed
+#   y <- observations(x)
+#   n_obs <- length(y)
+#   warning("Experimental: Bootstrapping may be unreliable for the MCB component.")
+# 
+#   purrr::map(
+#     .x = x,
+#     level = level,
+#     n_boot = n_boot,
+#     .f = function(o, level, n_boot) {
+#       xr <- recalibrate_mean(o$x, y)
+#       bootstrap_sample_Bernoulli(o$x, xr, n_boot, mcbdsc, resample_x = resample_x) |>
+#         unlist() |>
+#         matrix(nrow = n_boot, byrow = TRUE) |>
+#         list(s = _)
+#     }
+#   )
+# }

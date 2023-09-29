@@ -38,11 +38,9 @@ conditional event probability against the forecast value.
 }
 \examples{
 data(ex_binary, package = "triptych")
-# Construct and inspect
+
 rel <- reliability(ex_binary)
-# or: rel <- reliability(ex_binary[2:11], ex_binary[1])
 rel
-class(rel)
 
 # 1. Choose 4 predictions
 # 2. Visualize
@@ -60,9 +58,9 @@ ggplot(df_est, aes(x = x, y = CEP, col = forecast)) +
 
 }
 \seealso{
-Accessors: \code{\link[=estimates]{estimates()}}, \code{\link[=regions]{regions()}}, \code{\link[=forecasts]{forecasts()}}
+Accessors: \code{\link[=estimates]{estimates()}}, \code{\link[=regions]{regions()}}, \code{\link[=forecasts]{forecasts()}}, \code{\link[=observations]{observations()}}
 
 Adding uncertainty quantification: \code{\link[=add_confidence]{add_confidence()}}
 
-Visualization: \code{\link[=plot.triptych]{plot.triptych()}}, \code{\link[=autoplot.triptych]{autoplot.triptych()}}
+Visualization: \code{\link[=plot.triptych_reliability]{plot.triptych_reliability()}}, \code{\link[=autoplot.triptych_reliability]{autoplot.triptych_reliability()}}
 }

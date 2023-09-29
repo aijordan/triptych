@@ -21,19 +21,17 @@
 #'   }
 #'   Access is most convenient through [estimates()], [regions()], and [forecasts()].
 #'
-#' @seealso Accessors: [estimates()], [regions()], [forecasts()]
+#' @seealso Accessors: [estimates()], [regions()], [forecasts()], [observations()]
 #'
 #'   Adding uncertainty quantification: [add_confidence()]
 #'
-#'   Visualization: [plot.triptych()], [autoplot.triptych()]
+#'   Visualization: [plot.triptych_roc()], [autoplot.triptych_roc()]
 #'
 #' @examples
 #' data(ex_binary, package = "triptych")
-#' # Construct and inspect
+#' 
 #' rc <- roc(ex_binary)
-#' # or: rc <- roc(ex_binary[2:11], ex_binary[1])
 #' rc
-#' class(rc)
 #' 
 #' # 1. Choose 4 predictions
 #' # 2. Visualize

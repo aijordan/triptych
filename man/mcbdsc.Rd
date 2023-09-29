@@ -28,8 +28,7 @@ is named according to the corresponding forecasting method,
 and contains a list of named objects:
 \itemize{
 \item \code{estimate}: A data frame of the score decomposition.
-\item \code{region}: Either an empty list, or a (yet to be determined) object added
-by \code{\link[=add_confidence]{add_confidence()}}.
+\item \code{region}: An empty list. Adding confidence regions is not yet supported.
 \item \code{x}: The numeric vector of original forecasts.
 }
 Access is most convenient through \code{\link[=estimates]{estimates()}}, \code{\link[=regions]{regions()}}, and \code{\link[=forecasts]{forecasts()}}.
@@ -41,24 +40,17 @@ the DSC component against the MCB component allows for a quick visual
 inspection of predictive performance for many forecasting methods.
 }
 \examples{
-#' data(ex_binary, package = "triptych")
-# Construct and inspect
+data(ex_binary, package = "triptych")
+
 md <- mcbdsc(ex_binary)
-# or: md <- reliability(ex_binary[2:11], ex_binary[1])
 md
-class(md)
 
-# Visualize
 autoplot(md)
-
-# Show score decomposition
 estimates(md)
 
 }
 \seealso{
-Accessors: \code{\link[=estimates]{estimates()}}, \code{\link[=regions]{regions()}}, \code{\link[=forecasts]{forecasts()}}
+Accessors: \code{\link[=estimates]{estimates()}}, \code{\link[=regions]{regions()}}, \code{\link[=forecasts]{forecasts()}}, \code{\link[=observations]{observations()}}
 
-Adding uncertainty quantification: \code{\link[=add_confidence]{add_confidence()}}
-
-Visualization: \code{\link[=plot.triptych]{plot.triptych()}}, \code{\link[=autoplot.triptych]{autoplot.triptych()}}
+Visualization: \code{\link[=plot.triptych_mcbdsc]{plot.triptych_mcbdsc()}}, \code{\link[=autoplot.triptych_mcbdsc]{autoplot.triptych_mcbdsc()}}
 }

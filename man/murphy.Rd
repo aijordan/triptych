@@ -39,11 +39,9 @@ scores across all threshold values.
 }
 \examples{
 data(ex_binary, package = "triptych")
-# Construct and inspect
+
 mr <- murphy(ex_binary)
-# or: mr <- murphy(ex_binary[2:11], ex_binary[1])
 mr
-class(mr)
 
 # 1. Choose 4 predictions
 # 2. Visualize
@@ -60,9 +58,9 @@ ggplot(df_est) +
 
 }
 \seealso{
-Accessors: \code{\link[=estimates]{estimates()}}, \code{\link[=regions]{regions()}}, \code{\link[=forecasts]{forecasts()}}
+Accessors: \code{\link[=estimates]{estimates()}}, \code{\link[=regions]{regions()}}, \code{\link[=forecasts]{forecasts()}}, \code{\link[=observations]{observations()}}
 
 Adding uncertainty quantification: \code{\link[=add_confidence]{add_confidence()}}
 
-Visualization: \code{\link[=plot.triptych]{plot.triptych()}}, \code{\link[=autoplot.triptych]{autoplot.triptych()}}
+Visualization: \code{\link[=plot.triptych_murphy]{plot.triptych_murphy()}}, \code{\link[=autoplot.triptych_murphy]{autoplot.triptych_murphy()}}
 }

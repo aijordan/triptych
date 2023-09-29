@@ -19,19 +19,17 @@
 #'   }
 #'   Access is most convenient through [estimates()], [regions()], and [forecasts()].
 #'
-#' @seealso Accessors: [estimates()], [regions()], [forecasts()]
+#' @seealso Accessors: [estimates()], [regions()], [forecasts()], [observations()]
 #'
 #'   Adding uncertainty quantification: [add_confidence()]
 #'
-#'   Visualization: [plot.triptych()], [autoplot.triptych()]
+#'   Visualization: [plot.triptych_murphy()], [autoplot.triptych_murphy()]
 #'
 #' @examples
 #' data(ex_binary, package = "triptych")
-#' # Construct and inspect
+#'
 #' mr <- murphy(ex_binary)
-#' # or: mr <- murphy(ex_binary[2:11], ex_binary[1])
 #' mr
-#' class(mr)
 #' 
 #' # 1. Choose 4 predictions
 #' # 2. Visualize

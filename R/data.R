@@ -24,7 +24,7 @@
 #' \deqn{X[j] = F(p[j]; a, b),}
 #' where \eqn{a} and \eqn{b} are the positive shape parameters (see [pbeta()]).
 #' 
-#' @format ## `ex_binary`
+#' @format
 #' A data frame with 1,000 rows and 11 columns, generated as described in 'Details':
 #' \describe{
 #'   \item{y}{observations}
