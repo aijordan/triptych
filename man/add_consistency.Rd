@@ -28,12 +28,12 @@ a miscalibrated forecast.
 \examples{
 data(ex_binary, package = "triptych")
 
-# Construct triptych object (with reliability curve component) and select 2 forecasts
 tr <- triptych(ex_binary) |>
   dplyr::slice(1, 9)
 
 # Bootstrap resampling is expensive
 # (the number of bootstrap samples is small to keep execution times short)
+
 tr <- add_consistency(tr, level = 0.9, method = "resampling_Bernoulli", n_boot = 20)
 regions(tr$reliability)
 

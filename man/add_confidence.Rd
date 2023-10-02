@@ -27,17 +27,18 @@ Here, "parameter" refers to a murphy curve, a reliability curve, or a ROC curve,
 \examples{
 data(ex_binary, package = "triptych")
 
-# Construct triptych object and select 2 forecasts
 tr <- triptych(ex_binary) |>
   dplyr::slice(1, 9)
 
 # Bootstrap resampling is expensive
 # (the number of bootstrap samples is small to keep execution times short)
+
 tr <- add_confidence(tr, level = 0.9, method = "resampling_cases", n_boot = 20)
 regions(tr$murphy)
 regions(tr$reliability)
 regions(tr$roc)
 
-#' @seealso [resampling_cases()], [resampling_Bernoulli()]
-
+}
+\seealso{
+\code{\link[=resampling_cases]{resampling_cases()}}, \code{\link[=resampling_Bernoulli]{resampling_Bernoulli()}}
 }

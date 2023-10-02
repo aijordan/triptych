@@ -91,6 +91,7 @@ estimates <- function(x, at, ...) {
 #' 
 #' # Bootstrap resampling is expensive
 #' # (the number of bootstrap samples is small to keep execution times short)
+#' 
 #' tr <- triptych(ex_binary) |>
 #'   dplyr::slice(1, 9) |>
 #'   add_confidence(level = 0.9, method = "resampling_cases", n_boot = 20)
