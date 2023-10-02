@@ -5,14 +5,16 @@
 \alias{as_reliability}
 \title{Evaluation of forecasts using reliability curves}
 \usage{
-reliability(x, y = NULL, ...)
+reliability(x, y = NULL, y_var = "y", ...)
 
 as_reliability(x, r)
 }
 \arguments{
 \item{x}{A data frame, list, matrix, or other object that can be coerced to a tibble. Contains numeric forecasts.}
 
-\item{y}{A numeric vector of observations. If missing, a column with name "y" must be present in the tibble coerced from \code{x}.}
+\item{y}{A numeric vector of observations. If \code{is.null(y)} is \code{TRUE}, defaults to \code{dplyr::pull(x, y_var)}.}
+
+\item{y_var}{A variable in \code{x}, as specified in \code{var} in \code{\link[dplyr:pull]{dplyr::pull()}}. Only used if \code{is.null(y)} is \code{TRUE}.}
 
 \item{...}{Unused.}
 

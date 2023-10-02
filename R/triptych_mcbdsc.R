@@ -39,12 +39,12 @@ NULL
 
 #' @rdname mcbdsc
 #' @export
-mcbdsc <- function(x, y = NULL, score = "Brier_score", ...) {
+mcbdsc <- function(x, y = NULL, y_var = "y", score = "Brier_score", ...) {
   x <- tibble::as_tibble(x)
   if (is.null(y)) {
-    stopifnot("y" %in% names(x))
-    y <- x$y
-    x <- dplyr::select(x, !y)
+    y_var <- tidyselect::vars_pull(names(x), !!rlang::enquo(y_var))
+    y <- x[[y_var]]
+    x <- dplyr::select(x, !y_var)
   }
   y <- vec_cast(y, to = double())
   score <- vec_cast(score, to = character())

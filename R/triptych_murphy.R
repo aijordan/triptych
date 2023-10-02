@@ -3,7 +3,8 @@
 #' A Murphy curve visualizes economic utility by displaying the mean elementary
 #' scores across all threshold values.
 #'
-#' @param ref A numeric vector of reference forecasts. Can also be supplied as a column with name "ref" in the tibble coerced from `x`.
+#' @param ref A numeric vector of reference forecasts. If `is.null(ref)` is `TRUE`, defaults to `dplyr::pull(x, "ref")` if a variable `ref` is present, or `dplyr::pull(x, ref_var)` if `ref_var` is supplied.
+#' @param ref_var A variable in `x`, as specified in `var` in [dplyr::pull()]). Only used if `is.null(ref)` is `TRUE`.
 #' @param ... Unused.
 #' @inheritParams triptych
 #'
@@ -49,16 +50,24 @@ NULL
 
 #' @rdname murphy
 #' @export
-murphy <- function(x, y = NULL, ref = NULL, ...) {
+murphy <- function(x, y = NULL, y_var = "y", ref = NULL, ref_var = "ref", ...) {
   x <- tibble::as_tibble(x)
   if (is.null(y)) {
-    stopifnot("y" %in% names(x))
-    y <- x$y
-    x <- dplyr::select(x, !y)
+    y_var <- tidyselect::vars_pull(names(x), !!rlang::enquo(y_var))
+    y <- x[[y_var]]
+    x <- dplyr::select(x, !y_var)
   }
-  if (is.null(ref) && "ref" %in% names(x)) {
-    ref <- x$ref
-    x <- dplyr::select(x, !ref)
+  if (is.null(ref)) {
+    # ref_var must be present in x, if ref_var is user-supplied...
+    # ...otherwise, it's okay if ref_var is not present in x.
+    if (!missing(ref_var)) {
+      ref_var <- tidyselect::vars_pull(names(x), !!rlang::enquo(ref_var))
+      ref <- x[[ref_var]]
+      x <- dplyr::select(x, !ref_var)
+    } else if (ref_var %in% names(x)) {
+      ref <- x[[ref_var]]
+      x <- dplyr::select(x, !ref_var)
+    }
   }
   y <- vec_cast(y, to = double())
   ref <- vec_cast(ref, to = double())

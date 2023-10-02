@@ -6,7 +6,8 @@
 #' The `triptych` S3 class has plotting methods for `ggplot2`.
 #'
 #' @param x A data frame, list, matrix, or other object that can be coerced to a tibble. Contains numeric forecasts.
-#' @param y A numeric vector of observations. If missing, a column with name "y" must be present in the tibble coerced from `x`.
+#' @param y A numeric vector of observations. If `is.null(y)` is `TRUE`, defaults to `dplyr::pull(x, y_var)`.
+#' @param y_var A variable in `x`, as specified in `var` in [dplyr::pull()]. Only used if `is.null(y)` is `TRUE`.
 #' @param ... Additional arguments passed to [murphy()], [reliability()], [roc()], and [mcbdsc()].
 #'
 #' @return A `triptych` object, that is a tibble subclass, and contains five columns:
@@ -40,12 +41,12 @@
 #'   ggplot2::guides(colour = ggplot2::guide_legend("Forecast"))
 #'
 #' @export
-triptych <- function(x, y = NULL, ...) {
+triptych <- function(x, y = NULL, y_var = "y", ...) {
   x <- tibble::as_tibble(x)
   if (is.null(y)) {
-    stopifnot("y" %in% names(x))
-    y <- x$y
-    x <- dplyr::select(x, !y)
+    y_var <- tidyselect::vars_pull(names(x), !!rlang::enquo(y_var))
+    y <- x[[y_var]]
+    x <- dplyr::select(x, !y_var)
   }
   y <- vec_cast(y, to = double())
   new_triptych(tibble::tibble(

@@ -52,12 +52,12 @@ NULL
 
 #' @rdname roc
 #' @export
-roc <- function(x, y = NULL, concave = TRUE, ...) {
+roc <- function(x, y = NULL, y_var = "y", concave = TRUE, ...) {
   x <- tibble::as_tibble(x)
   if (is.null(y)) {
-    stopifnot("y" %in% names(x))
-    y <- x$y
-    x <- dplyr::select(x, !y)
+    y_var <- tidyselect::vars_pull(names(x), !!rlang::enquo(y_var))
+    y <- x[[y_var]]
+    x <- dplyr::select(x, !y_var)
   }
   y <- vec_cast(y, to = double())
   concave <- vec_cast(concave, to = logical())
