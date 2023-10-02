@@ -30,6 +30,7 @@ Imports:
     purrr,
     tibble,
     rlang,
+    tidyselect,
     class,
     scales,
     geomtextpath,
