@@ -54,7 +54,7 @@ conditional event probability against the forecast value.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">reliability</span><span class="op">(</span><span class="va">x</span>, y <span class="op">=</span> <span class="cn">NULL</span>, y_var <span class="op">=</span> <span class="st">"y"</span>, <span class="va">...</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">reliability</span><span class="op">(</span><span class="va">x</span>, y_var <span class="op">=</span> <span class="st">"y"</span>, <span class="va">...</span>, y <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">as_reliability</span><span class="op">(</span><span class="va">x</span>, <span class="va">r</span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -62,19 +62,19 @@ conditional event probability against the forecast value.</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
-<dd><p>A data frame, list, matrix, or other object that can be coerced to a tibble. Contains numeric forecasts.</p></dd>
-
-
-<dt>y</dt>
-<dd><p>A numeric vector of observations. If <code>is.null(y)</code> is <code>TRUE</code>, defaults to <code>dplyr::pull(x, y_var)</code>.</p></dd>
+<dd><p>A data frame, list, matrix, or other object that can be coerced to a tibble. Contains numeric forecasts, and observations (optional).</p></dd>
 
 
 <dt>y_var</dt>
-<dd><p>A variable in <code>x</code>, as specified in <code>var</code> in <code><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">dplyr::pull()</a></code>. Only used if <code>is.null(y)</code> is <code>TRUE</code>.</p></dd>
+<dd><p>A variable in <code>x</code> that contains observations. Specified as the argument <code>var</code>in <code><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">dplyr::pull()</a></code>.</p></dd>
 
 
 <dt>...</dt>
 <dd><p>Unused.</p></dd>
+
+
+<dt>y</dt>
+<dd><p>A numeric vector of observations. If supplied, overrides <code>y_var</code>. Otherwise, defaults to <code>dplyr::pull(x, y_var)</code>.</p></dd>
 
 
 <dt>r</dt>
