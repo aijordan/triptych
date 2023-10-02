@@ -3,9 +3,9 @@
 #' A Murphy curve visualizes economic utility by displaying the mean elementary
 #' scores across all threshold values.
 #'
-#' @param ref A numeric vector of reference forecasts. If `is.null(ref)` is `TRUE`, defaults to `dplyr::pull(x, "ref")` if a variable `ref` is present, or `dplyr::pull(x, ref_var)` if `ref_var` is supplied.
-#' @param ref_var A variable in `x`, as specified in `var` in [dplyr::pull()]). Only used if `is.null(ref)` is `TRUE`.
+#' @param ref_var A variable in `x` that contains reference forecasts. Specified as the argument `var` in [dplyr::pull()]). Ignored, if the default name is not present in `x`. 
 #' @param ... Unused.
+#' @param ref A numeric vector of reference forecasts. If supplied, overrides `ref_var`. Otherwise, ignored (see `ref_var`) or `dplyr::pull(x, ref_var)`.
 #' @inheritParams triptych
 #'
 #' @return A `triptych_murphy` object, that is a `vctrs_vctr` subclass, and has
@@ -50,7 +50,7 @@ NULL
 
 #' @rdname murphy
 #' @export
-murphy <- function(x, y = NULL, y_var = "y", ref = NULL, ref_var = "ref", ...) {
+murphy <- function(x, y_var = "y", ref_var = "ref", ..., y = NULL, ref = NULL) {
   x <- tibble::as_tibble(x)
   if (is.null(y)) {
     y_var <- tidyselect::vars_pull(names(x), !!rlang::enquo(y_var))

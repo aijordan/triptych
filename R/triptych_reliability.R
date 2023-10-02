@@ -50,7 +50,7 @@ NULL
 
 #' @rdname reliability
 #' @export
-reliability <- function(x, y = NULL, y_var = "y", ...) {
+reliability <- function(x, y_var = "y", ..., y = NULL) {
   x <- tibble::as_tibble(x)
   if (is.null(y)) {
     y_var <- tidyselect::vars_pull(names(x), !!rlang::enquo(y_var))

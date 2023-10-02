@@ -5,22 +5,22 @@
 \alias{as_murphy}
 \title{Evaluation of forecasts using Murphy curves}
 \usage{
-murphy(x, y = NULL, y_var = "y", ref = NULL, ref_var = "ref", ...)
+murphy(x, y_var = "y", ref_var = "ref", ..., y = NULL, ref = NULL)
 
 as_murphy(x, r)
 }
 \arguments{
-\item{x}{A data frame, list, matrix, or other object that can be coerced to a tibble. Contains numeric forecasts.}
+\item{x}{A data frame, list, matrix, or other object that can be coerced to a tibble. Contains numeric forecasts, and observations (optional).}
 
-\item{y}{A numeric vector of observations. If \code{is.null(y)} is \code{TRUE}, defaults to \code{dplyr::pull(x, y_var)}.}
+\item{y_var}{A variable in \code{x} that contains observations. Specified as the argument \code{var}in \code{\link[dplyr:pull]{dplyr::pull()}}.}
 
-\item{y_var}{A variable in \code{x}, as specified in \code{var} in \code{\link[dplyr:pull]{dplyr::pull()}}. Only used if \code{is.null(y)} is \code{TRUE}.}
-
-\item{ref}{A numeric vector of reference forecasts. If \code{is.null(ref)} is \code{TRUE}, defaults to \code{dplyr::pull(x, "ref")} if a variable \code{ref} is present, or \code{dplyr::pull(x, ref_var)} if \code{ref_var} is supplied.}
-
-\item{ref_var}{A variable in \code{x}, as specified in \code{var} in \code{\link[dplyr:pull]{dplyr::pull()}}). Only used if \code{is.null(ref)} is \code{TRUE}.}
+\item{ref_var}{A variable in \code{x} that contains reference forecasts. Specified as the argument \code{var} in \code{\link[dplyr:pull]{dplyr::pull()}}). Ignored, if the default name is not present in \code{x}.}
 
 \item{...}{Unused.}
+
+\item{y}{A numeric vector of observations. If supplied, overrides \code{y_var}. Otherwise, defaults to \code{dplyr::pull(x, y_var)}.}
+
+\item{ref}{A numeric vector of reference forecasts. If supplied, overrides \code{ref_var}. Otherwise, ignored (see \code{ref_var}) or \code{dplyr::pull(x, ref_var)}.}
 
 \item{r}{A reference triptych_murphy object whose attributes are used for casting.}
 }

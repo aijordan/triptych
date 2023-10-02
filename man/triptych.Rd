@@ -4,16 +4,16 @@
 \alias{triptych}
 \title{Evaluation of forecasts using a Triptych}
 \usage{
-triptych(x, y = NULL, y_var = "y", ...)
+triptych(x, y_var = "y", ..., y = NULL)
 }
 \arguments{
-\item{x}{A data frame, list, matrix, or other object that can be coerced to a tibble. Contains numeric forecasts.}
+\item{x}{A data frame, list, matrix, or other object that can be coerced to a tibble. Contains numeric forecasts, and observations (optional).}
 
-\item{y}{A numeric vector of observations. If \code{is.null(y)} is \code{TRUE}, defaults to \code{dplyr::pull(x, y_var)}.}
-
-\item{y_var}{A variable in \code{x}, as specified in \code{var} in \code{\link[dplyr:pull]{dplyr::pull()}}. Only used if \code{is.null(y)} is \code{TRUE}.}
+\item{y_var}{A variable in \code{x} that contains observations. Specified as the argument \code{var}in \code{\link[dplyr:pull]{dplyr::pull()}}.}
 
 \item{...}{Additional arguments passed to \code{\link[=murphy]{murphy()}}, \code{\link[=reliability]{reliability()}}, \code{\link[=roc]{roc()}}, and \code{\link[=mcbdsc]{mcbdsc()}}.}
+
+\item{y}{A numeric vector of observations. If supplied, overrides \code{y_var}. Otherwise, defaults to \code{dplyr::pull(x, y_var)}.}
 }
 \value{
 A \code{triptych} object, that is a tibble subclass, and contains five columns:
@@ -35,6 +35,8 @@ The \code{triptych} S3 class has plotting methods for \code{ggplot2}.
 data(ex_binary, package = "triptych")
 
 tr <- triptych(ex_binary)
+identical(tr, triptych(ex_binary, y))
+identical(tr, triptych(ex_binary, 1))
 tr
 
 # 1. Choose 4 predictions

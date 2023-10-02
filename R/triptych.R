@@ -5,10 +5,10 @@
 #' and discrimination ability via ROC curves.
 #' The `triptych` S3 class has plotting methods for `ggplot2`.
 #'
-#' @param x A data frame, list, matrix, or other object that can be coerced to a tibble. Contains numeric forecasts.
-#' @param y A numeric vector of observations. If `is.null(y)` is `TRUE`, defaults to `dplyr::pull(x, y_var)`.
-#' @param y_var A variable in `x`, as specified in `var` in [dplyr::pull()]. Only used if `is.null(y)` is `TRUE`.
+#' @param x A data frame, list, matrix, or other object that can be coerced to a tibble. Contains numeric forecasts, and observations (optional).
+#' @param y_var A variable in `x` that contains observations. Specified as the argument `var`in [dplyr::pull()].
 #' @param ... Additional arguments passed to [murphy()], [reliability()], [roc()], and [mcbdsc()].
+#' @param y A numeric vector of observations. If supplied, overrides `y_var`. Otherwise, defaults to `dplyr::pull(x, y_var)`.
 #'
 #' @return A `triptych` object, that is a tibble subclass, and contains five columns:
 #'   * `forecast`: Contains the names.
@@ -27,6 +27,8 @@
 #' data(ex_binary, package = "triptych")
 #' 
 #' tr <- triptych(ex_binary)
+#' identical(tr, triptych(ex_binary, y))
+#' identical(tr, triptych(ex_binary, 1))
 #' tr
 #' 
 #' # 1. Choose 4 predictions
@@ -41,7 +43,7 @@
 #'   ggplot2::guides(colour = ggplot2::guide_legend("Forecast"))
 #'
 #' @export
-triptych <- function(x, y = NULL, y_var = "y", ...) {
+triptych <- function(x, y_var = "y", ..., y = NULL) {
   x <- tibble::as_tibble(x)
   if (is.null(y)) {
     y_var <- tidyselect::vars_pull(names(x), !!rlang::enquo(y_var))
@@ -51,10 +53,10 @@ triptych <- function(x, y = NULL, y_var = "y", ...) {
   y <- vec_cast(y, to = double())
   new_triptych(tibble::tibble(
     forecast = names(x),
-    murphy = murphy(x, y, ...),
-    reliability = reliability(x, y, ...),
-    roc = roc(x, y, ...),
-    mcbdsc = mcbdsc(x, y, ...)
+    murphy = murphy(x, y = y, ...),
+    reliability = reliability(x, y = y, ...),
+    roc = roc(x, y = y, ...),
+    mcbdsc = mcbdsc(x, y = y, ...)
   ), y)
 }
 

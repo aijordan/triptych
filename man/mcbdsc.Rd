@@ -5,21 +5,21 @@
 \alias{as_mcbdsc}
 \title{Evaluation of forecasts using score decompositions}
 \usage{
-mcbdsc(x, y = NULL, y_var = "y", score = "Brier_score", ...)
+mcbdsc(x, y_var = "y", ..., y = NULL, score = "Brier_score")
 
 as_mcbdsc(x, r)
 }
 \arguments{
-\item{x}{A data frame, list, matrix, or other object that can be coerced to a tibble. Contains numeric forecasts.}
+\item{x}{A data frame, list, matrix, or other object that can be coerced to a tibble. Contains numeric forecasts, and observations (optional).}
 
-\item{y}{A numeric vector of observations. If \code{is.null(y)} is \code{TRUE}, defaults to \code{dplyr::pull(x, y_var)}.}
+\item{y_var}{A variable in \code{x} that contains observations. Specified as the argument \code{var}in \code{\link[dplyr:pull]{dplyr::pull()}}.}
 
-\item{y_var}{A variable in \code{x}, as specified in \code{var} in \code{\link[dplyr:pull]{dplyr::pull()}}. Only used if \code{is.null(y)} is \code{TRUE}.}
+\item{...}{Unused.}
+
+\item{y}{A numeric vector of observations. If supplied, overrides \code{y_var}. Otherwise, defaults to \code{dplyr::pull(x, y_var)}.}
 
 \item{score}{A string specifying the score function.
 One of: \code{"Brier_score"} (default), \code{"log_score"}, \code{"MR_score"}.}
-
-\item{...}{Unused.}
 
 \item{r}{A reference triptych_mcbdsc object whose attributes are used for casting.}
 }

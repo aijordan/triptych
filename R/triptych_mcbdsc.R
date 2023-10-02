@@ -39,7 +39,7 @@ NULL
 
 #' @rdname mcbdsc
 #' @export
-mcbdsc <- function(x, y = NULL, y_var = "y", score = "Brier_score", ...) {
+mcbdsc <- function(x, y_var = "y", ..., y = NULL, score = "Brier_score") {
   x <- tibble::as_tibble(x)
   if (is.null(y)) {
     y_var <- tidyselect::vars_pull(names(x), !!rlang::enquo(y_var))

@@ -52,7 +52,7 @@ NULL
 
 #' @rdname roc
 #' @export
-roc <- function(x, y = NULL, y_var = "y", concave = TRUE, ...) {
+roc <- function(x, y_var = "y", ..., y = NULL, concave = TRUE) {
   x <- tibble::as_tibble(x)
   if (is.null(y)) {
     y_var <- tidyselect::vars_pull(names(x), !!rlang::enquo(y_var))
