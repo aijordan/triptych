@@ -1,13 +1,13 @@
 Package: triptych
 Title: Diagnostic Graphics to Evaluate Forecast Performance
-Version: 0.1.0
+Version: 0.1.2
 Authors@R: c(
     person(given = "Timo",
            family = "Dimitriadis",
-           role = "aut"),
+           role = c("aut", "cph")),
     person(given = c("Alexander", "I."),
            family = "Jordan",
-           role = c("aut", "cre"),
+           role = c("aut", "cre", "cph"),
            email = "alexander.jordan@h-its.org")
   )
 URL: https://github.com/aijordan/triptych/, https://aijordan.github.io/triptych/

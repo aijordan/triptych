@@ -5,8 +5,6 @@
 
 <!-- badges: start -->
 
-[![Lifecycle:
-experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/triptych)](https://CRAN.R-project.org/package=triptych)
 [![R-CMD-check](https://github.com/aijordan/triptych/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/aijordan/triptych/actions/workflows/R-CMD-check.yaml)
@@ -21,7 +19,7 @@ Jordan, Vogel (2023)
 
 ## Installation
 
-(Soon) Install the latest release of triptych from CRAN with:
+Install the latest release of triptych from CRAN with:
 
 ``` r
 install.packages("triptych")
@@ -41,9 +39,7 @@ library(triptych)
 data(ex_binary, package = "triptych")
 set.seed(20230921)
 
-# Construct and inspect
 tr <- triptych(ex_binary)
-# or: tr <- triptych(ex_binary[2:11], ex_binary[1])
 tr
 #> # A tibble: 10 × 5
 #>    forecast          murphy     reliability             roc          mcbdsc
@@ -58,8 +54,6 @@ tr
 #>  8 X08      <named list[3]> <named list[3]> <named list[3]> <named list[3]>
 #>  9 X09      <named list[3]> <named list[3]> <named list[3]> <named list[3]>
 #> 10 X10      <named list[3]> <named list[3]> <named list[3]> <named list[3]>
-class(tr)
-#> [1] "triptych"   "tbl_df"     "tbl"        "data.frame"
 
 # 1. Choose 4 predictions
 # 2. Add consistency bands (for reliability curves)

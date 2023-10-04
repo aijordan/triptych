@@ -1,3 +1,3 @@
-# triptych 0.1.0
+# triptych 0.1.2
 
 * Initial CRAN submission.
