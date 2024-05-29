@@ -78,6 +78,7 @@ vec_ptype_abbr.triptych_reliability <- function(x, ..., prefix_named = FALSE, su
 
 # coercion
 
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.triptych_reliability <- function(x, y, ..., x_arg = "", y_arg = "") {
   UseMethod("vec_ptype2.triptych_reliability")
 }
@@ -108,6 +109,7 @@ as_reliability <- function(x, r) {
   vec_cast(x, to = r)
 }
 
+#' @exportS3Method vctrs::vec_cast
 vec_cast.triptych_reliability <- function(x, to, ...) {
   UseMethod("vec_cast.triptych_reliability")
 }
@@ -164,6 +166,7 @@ vec_cast.triptych_reliability.double <- function(x, to, ...) {
     new_triptych_reliability(y = y)
 }
 
+#' @export
 eval_diag.triptych_reliability <- function(x, at, ...) {
   purrr::map(x, at = at, .f = \(o, at) {
     pivot_longer(

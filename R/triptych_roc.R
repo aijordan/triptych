@@ -82,6 +82,7 @@ vec_ptype_abbr.triptych_roc <- function(x, ..., prefix_named = FALSE, suffix_sha
 
 # coercion
 
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.triptych_roc <- function(x, y, ..., x_arg = "", y_arg = "") {
   UseMethod("vec_ptype2.triptych_roc")
 }
@@ -112,6 +113,7 @@ as_roc <- function(x, r) {
   vec_cast(x, to = r)
 }
 
+#' @exportS3Method vctrs::vec_cast
 vec_cast.triptych_roc <- function(x, to, ...) {
   UseMethod("vec_cast.triptych_roc")
 }
@@ -161,7 +163,7 @@ vec_cast.triptych_roc.double <- function(x, to, ...) {
     new_triptych_roc(y = y, concave = concave)
 }
 
-
+#' @export
 eval_diag.triptych_roc <- function(x, at, p1 = mean(attr(x, "y")), ...) {
   purrr::map(x, at = at, p1 = p1, .f = \(o, at, p1) {
     pROC::coords(o$estimate, ret = c("tpr", "fpr")) |>

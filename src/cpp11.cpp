@@ -6,20 +6,6 @@
 #include <R_ext/Visibility.h>
 
 // md.cpp
-data_frame C_murphydiag_expect(const std::vector<double>& x, const std::vector<double>& y, const double& level);
-extern "C" SEXP _triptych_C_murphydiag_expect(SEXP x, SEXP y, SEXP level) {
-  BEGIN_CPP11
-    return cpp11::as_sexp(C_murphydiag_expect(cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(x), cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(y), cpp11::as_cpp<cpp11::decay_t<const double&>>(level)));
-  END_CPP11
-}
-// md.cpp
-data_frame C_murphydiag_median(const std::vector<double>& x, const std::vector<double>& y);
-extern "C" SEXP _triptych_C_murphydiag_median(SEXP x, SEXP y) {
-  BEGIN_CPP11
-    return cpp11::as_sexp(C_murphydiag_median(cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(x), cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(y)));
-  END_CPP11
-}
-// md.cpp
 data_frame C_murphydiag_prob(const std::vector<double>& x, const std::vector<double>& y);
 extern "C" SEXP _triptych_C_murphydiag_prob(SEXP x, SEXP y) {
   BEGIN_CPP11
@@ -33,13 +19,75 @@ extern "C" SEXP _triptych_C_murphydiag_prob_ref(SEXP x, SEXP y, SEXP ref) {
     return cpp11::as_sexp(C_murphydiag_prob_ref(cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(x), cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(y), cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(ref)));
   END_CPP11
 }
+// md.cpp
+data_frame C_murphydiag_mean(const std::vector<double>& x, const std::vector<double>& y);
+extern "C" SEXP _triptych_C_murphydiag_mean(SEXP x, SEXP y) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(C_murphydiag_mean(cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(x), cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(y)));
+  END_CPP11
+}
+// md.cpp
+data_frame C_murphydiag_mean_ref(const std::vector<double>& x, const std::vector<double>& y, const std::vector<double>& ref);
+extern "C" SEXP _triptych_C_murphydiag_mean_ref(SEXP x, SEXP y, SEXP ref) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(C_murphydiag_mean_ref(cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(x), cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(y), cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(ref)));
+  END_CPP11
+}
+// md.cpp
+data_frame C_murphydiag_median(const std::vector<double>& x, const std::vector<double>& y);
+extern "C" SEXP _triptych_C_murphydiag_median(SEXP x, SEXP y) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(C_murphydiag_median(cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(x), cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(y)));
+  END_CPP11
+}
+// md.cpp
+data_frame C_murphydiag_median_ref(const std::vector<double>& x, const std::vector<double>& y, const std::vector<double>& ref);
+extern "C" SEXP _triptych_C_murphydiag_median_ref(SEXP x, SEXP y, SEXP ref) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(C_murphydiag_median_ref(cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(x), cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(y), cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(ref)));
+  END_CPP11
+}
+// md.cpp
+data_frame C_murphydiag_quant(const std::vector<double>& x, const std::vector<double>& y, const double& level);
+extern "C" SEXP _triptych_C_murphydiag_quant(SEXP x, SEXP y, SEXP level) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(C_murphydiag_quant(cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(x), cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(y), cpp11::as_cpp<cpp11::decay_t<const double&>>(level)));
+  END_CPP11
+}
+// md.cpp
+data_frame C_murphydiag_quant_ref(const std::vector<double>& x, const std::vector<double>& y, const double& level, const std::vector<double>& ref);
+extern "C" SEXP _triptych_C_murphydiag_quant_ref(SEXP x, SEXP y, SEXP level, SEXP ref) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(C_murphydiag_quant_ref(cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(x), cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(y), cpp11::as_cpp<cpp11::decay_t<const double&>>(level), cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(ref)));
+  END_CPP11
+}
+// md.cpp
+data_frame C_murphydiag_expect(const std::vector<double>& x, const std::vector<double>& y, const double& level);
+extern "C" SEXP _triptych_C_murphydiag_expect(SEXP x, SEXP y, SEXP level) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(C_murphydiag_expect(cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(x), cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(y), cpp11::as_cpp<cpp11::decay_t<const double&>>(level)));
+  END_CPP11
+}
+// md.cpp
+data_frame C_murphydiag_expect_ref(const std::vector<double>& x, const std::vector<double>& y, const double& level, const std::vector<double>& ref);
+extern "C" SEXP _triptych_C_murphydiag_expect_ref(SEXP x, SEXP y, SEXP level, SEXP ref) {
+  BEGIN_CPP11
+    return cpp11::as_sexp(C_murphydiag_expect_ref(cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(x), cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(y), cpp11::as_cpp<cpp11::decay_t<const double&>>(level), cpp11::as_cpp<cpp11::decay_t<const std::vector<double>&>>(ref)));
+  END_CPP11
+}
 
 extern "C" {
 static const R_CallMethodDef CallEntries[] = {
-    {"_triptych_C_murphydiag_expect",   (DL_FUNC) &_triptych_C_murphydiag_expect,   3},
-    {"_triptych_C_murphydiag_median",   (DL_FUNC) &_triptych_C_murphydiag_median,   2},
-    {"_triptych_C_murphydiag_prob",     (DL_FUNC) &_triptych_C_murphydiag_prob,     2},
-    {"_triptych_C_murphydiag_prob_ref", (DL_FUNC) &_triptych_C_murphydiag_prob_ref, 3},
+    {"_triptych_C_murphydiag_expect",     (DL_FUNC) &_triptych_C_murphydiag_expect,     3},
+    {"_triptych_C_murphydiag_expect_ref", (DL_FUNC) &_triptych_C_murphydiag_expect_ref, 4},
+    {"_triptych_C_murphydiag_mean",       (DL_FUNC) &_triptych_C_murphydiag_mean,       2},
+    {"_triptych_C_murphydiag_mean_ref",   (DL_FUNC) &_triptych_C_murphydiag_mean_ref,   3},
+    {"_triptych_C_murphydiag_median",     (DL_FUNC) &_triptych_C_murphydiag_median,     2},
+    {"_triptych_C_murphydiag_median_ref", (DL_FUNC) &_triptych_C_murphydiag_median_ref, 3},
+    {"_triptych_C_murphydiag_prob",       (DL_FUNC) &_triptych_C_murphydiag_prob,       2},
+    {"_triptych_C_murphydiag_prob_ref",   (DL_FUNC) &_triptych_C_murphydiag_prob_ref,   3},
+    {"_triptych_C_murphydiag_quant",      (DL_FUNC) &_triptych_C_murphydiag_quant,      3},
+    {"_triptych_C_murphydiag_quant_ref",  (DL_FUNC) &_triptych_C_murphydiag_quant_ref,  4},
     {NULL, NULL, 0}
 };
 }

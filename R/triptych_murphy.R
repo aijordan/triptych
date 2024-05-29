@@ -91,6 +91,7 @@ vec_ptype_abbr.triptych_murphy <- function(x, ..., prefix_named = FALSE, suffix_
 
 # coercion
 
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.triptych_murphy <- function(x, y, ..., x_arg = "", y_arg = "") {
   UseMethod("vec_ptype2.triptych_murphy")
 }
@@ -121,6 +122,7 @@ as_murphy <- function(x, r) {
   vec_cast(x, to = r)
 }
 
+#' @exportS3Method vctrs::vec_cast
 vec_cast.triptych_murphy <- function(x, to, ...) {
   UseMethod("vec_cast.triptych_murphy")
 }
@@ -159,8 +161,15 @@ vec_cast.triptych_murphy.tbl_df <- function(x, to, ...) {
 vec_cast.triptych_murphy.double <- function(x, to, ...) {
   y <- observations(to)
   ref <- attr(to, "ref")
+  functional <- list(type = "prob")
+  C_murphydiag <- get(paste0("C_murphydiag_", functional$type, if (length(ref)) "_ref"))
+  md_args <- c(
+    list(x = x, y = y),
+    level = functional$level,
+    ref = ref
+  )
   list(
-    estimate = if (!length(ref)) C_murphydiag_prob(x, y) else C_murphydiag_prob_ref(x, y, ref),
+    estimate = do.call(C_murphydiag, md_args),
     region = list(),
     x = x
   ) |>
@@ -168,7 +177,7 @@ vec_cast.triptych_murphy.double <- function(x, to, ...) {
     new_triptych_murphy(y = y, ref = ref)
 }
 
-
+#' @export
 eval_diag.triptych_murphy <- function(x, at, ...) {
   purrr::map(x, at = at, .f = \(o, at) {
     ind <- findInterval(at, o$estimate$knot, all.inside = TRUE)

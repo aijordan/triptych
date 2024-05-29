@@ -69,6 +69,7 @@ vec_ptype_abbr.triptych_mcbdsc <- function(x, ..., prefix_named = FALSE, suffix_
 
 # coercion
 
+#' @exportS3Method vctrs::vec_ptype2
 vec_ptype2.triptych_mcbdsc <- function(x, y, ..., x_arg = "", y_arg = "") {
   UseMethod("vec_ptype2.triptych_mcbdsc")
 }
@@ -99,7 +100,7 @@ as_mcbdsc <- function(x, r) {
   vec_cast(x, to = r)
 }
 
-
+#' @exportS3Method vctrs::vec_cast
 vec_cast.triptych_mcbdsc <- function(x, to, ...) {
   UseMethod("vec_cast.triptych_mcbdsc")
 }
@@ -168,7 +169,7 @@ MR_score <- function(x, y) {
   )
 }
 
-
+#' @export
 eval_diag.triptych_mcbdsc <- function(x, ...) {
   purrr::map(x, .f = \(o) with(o$estimate, c(mean_score, MCB, DSC, UNC)))
 }

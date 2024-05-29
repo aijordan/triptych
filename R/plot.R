@@ -438,7 +438,7 @@ autoplot.triptych_mcbdsc <- function(
     colour_values <- rep(colour_values, nrow(df_e))
   }
 
-  ggplot2::ggplot(df_e) +
+  ggplot2::ggplot() +
     ggplot2::geom_segment(
       data = tibble::tibble(max_val = 2 * max(MCB_lim, DSC_lim)),
       mapping = ggplot2::aes(x = 0, y = 0, xend = .data$max_val, yend = .data$max_val),
@@ -447,6 +447,7 @@ autoplot.triptych_mcbdsc <- function(
     ) +
     ggplot2::geom_point(
       mapping = ggplot2::aes(x = 0, y = 0),
+      data = data.frame(),
       colour = colour_unc,
       fill = colour_unc,
       size = 2,
@@ -456,8 +457,9 @@ autoplot.triptych_mcbdsc <- function(
       mapping = ggplot2::aes(
         intercept = 0,
         slope = 1,
-        label = paste("UNC:", prettyNum(.data$UNC[1], digits = 3))
+        label = paste("UNC:", prettyNum(.data$UNC, digits = 3))
       ),
+      data = df_e[1, ],
       colour = colour_unc,
       hjust = 0.85,
       size = 7 * 0.36,

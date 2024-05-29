@@ -73,6 +73,8 @@ new_triptych <- function(x, y) {
 # vec_cast.triptych <- function(x, to, ...) {
 #   UseMethod("vec_cast.triptych")
 # }
+
+#' @export
 vec_cast.triptych.triptych <- function(x, to, ...) {
   triptych_cast(x, to, ...)
 }
@@ -80,6 +82,8 @@ triptych_cast <- function(x, to, ..., x_arg = "", to_arg = "") {
   out <- tib_cast(x, to, ..., x_arg = x_arg, to_arg = to_arg)
   new_triptych(out, y = attr(to, "y"))
 }
+
+#' @export
 vec_cast.triptych.double <- function(x, to, ...) {
   triptych(x, y = attr(to, "y"))
 }
@@ -87,6 +91,7 @@ vec_cast.triptych.double <- function(x, to, ...) {
 #   triptych(x, y = attr(to, "y"))
 # }
 
+#' @export
 vec_ptype2.triptych.triptych <- function(x, y, ...) {
   triptych_ptype2(x, y, ...)
 }
