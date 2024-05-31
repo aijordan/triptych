@@ -126,7 +126,8 @@ autoplot.triptych_murphy <- function(object, ...) {
         x = .data$knot,
         y = .data$mean_score,
         col = .data$forecast,
-      )
+      ),
+      data = df_e
     )
 }
 
@@ -183,7 +184,8 @@ autoplot.triptych_reliability <- function(object, ..., breaks = seq(0, 1, length
     ggplot2::theme_bw() +
     ggplot2::theme(aspect.ratio = 1) +
     ggplot2::geom_segment(
-      ggplot2::aes(x = 0, y = 0, xend = 1, yend = 1),
+      mapping = ggplot2::aes(x, y, xend = xend, yend = yend),
+      data = data.frame(x = 0, y = 0, xend = 1, yend = 1),
       colour = "black"
     ) +
     {
@@ -224,7 +226,8 @@ autoplot.triptych_reliability <- function(object, ..., breaks = seq(0, 1, length
         x = .data$x,
         y = .data$CEP,
         col = .data$forecast
-      )
+      ),
+      data = df_e
     )
 }
 
@@ -287,7 +290,8 @@ autoplot.triptych_roc <- function(object, ...) {
     ggplot2::theme_bw() +
     ggplot2::theme(aspect.ratio = 1) +
     ggplot2::geom_segment(
-      ggplot2::aes(x = 0, y = 0, xend = 1, yend = 1),
+      mapping = ggplot2::aes(x, y, xend = xend, yend = yend),
+      data = data.frame(x = 0, y = 0, xend = 1, yend = 1),
       colour = "black"
     ) +
     {
@@ -311,14 +315,16 @@ autoplot.triptych_roc <- function(object, ...) {
         x = .data$FAR,
         y = .data$HR,
         col = .data$forecast
-      )
+      ),
+      data = df_e
     )
 }
 
 autolayer.triptych_roc <- function(object, ...) {
   list(
     ggplot2::geom_segment(
-      ggplot2::aes(x = 0, y = 0, xend = 1, yend = 1),
+      mapping = ggplot2::aes(x, y, xend = xend, yend = yend),
+      data = data.frame(x = 0, y = 0, xend = 1, yend = 1),
       colour = "black"
     ),
     if (has_regions(object)) {
@@ -440,14 +446,14 @@ autoplot.triptych_mcbdsc <- function(
 
   ggplot2::ggplot() +
     ggplot2::geom_segment(
-      data = tibble::tibble(max_val = 2 * max(MCB_lim, DSC_lim)),
       mapping = ggplot2::aes(x = 0, y = 0, xend = .data$max_val, yend = .data$max_val),
+      data = tibble::tibble(max_val = 2 * max(MCB_lim, DSC_lim)),
       colour = colour_unc,
       linewidth = 1
     ) +
     ggplot2::geom_point(
-      mapping = ggplot2::aes(x = 0, y = 0),
-      data = data.frame(),
+      mapping = ggplot2::aes(x, y),
+      data = data.frame(x = 0, y = 0),
       colour = colour_unc,
       fill = colour_unc,
       size = 2,
@@ -483,8 +489,8 @@ autoplot.triptych_mcbdsc <- function(
       straight = TRUE
     ) +
     ggplot2::geom_point(
-      data = df_e_by_state$within,
-      mapping = ggplot2::aes(x = .data$MCB, y = .data$DSC, colour = .data$forecast)
+      mapping = ggplot2::aes(x = .data$MCB, y = .data$DSC, colour = .data$forecast),
+      data = df_e_by_state$within
     ) +
     {
       if (!isTRUE(MCBDSC_repel)) {
