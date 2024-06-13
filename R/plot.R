@@ -184,7 +184,7 @@ autoplot.triptych_reliability <- function(object, ..., breaks = seq(0, 1, length
     ggplot2::theme_bw() +
     ggplot2::theme(aspect.ratio = 1) +
     ggplot2::geom_segment(
-      mapping = ggplot2::aes(x, y, xend = xend, yend = yend),
+      mapping = ggplot2::aes(.data$x, .data$y, xend = .data$xend, yend = .data$yend),
       data = data.frame(x = 0, y = 0, xend = 1, yend = 1),
       colour = "black"
     ) +
@@ -290,7 +290,7 @@ autoplot.triptych_roc <- function(object, ...) {
     ggplot2::theme_bw() +
     ggplot2::theme(aspect.ratio = 1) +
     ggplot2::geom_segment(
-      mapping = ggplot2::aes(x, y, xend = xend, yend = yend),
+      mapping = ggplot2::aes(.data$x, .data$y, xend = .data$xend, yend = .data$yend),
       data = data.frame(x = 0, y = 0, xend = 1, yend = 1),
       colour = "black"
     ) +
@@ -323,7 +323,7 @@ autoplot.triptych_roc <- function(object, ...) {
 autolayer.triptych_roc <- function(object, ...) {
   list(
     ggplot2::geom_segment(
-      mapping = ggplot2::aes(x, y, xend = xend, yend = yend),
+      mapping = ggplot2::aes(.data$x, .data$y, xend = .data$xend, yend = .data$yend),
       data = data.frame(x = 0, y = 0, xend = 1, yend = 1),
       colour = "black"
     ),
@@ -452,7 +452,7 @@ autoplot.triptych_mcbdsc <- function(
       linewidth = 1
     ) +
     ggplot2::geom_point(
-      mapping = ggplot2::aes(x, y),
+      mapping = ggplot2::aes(.data$x, .data$y),
       data = data.frame(x = 0, y = 0),
       colour = colour_unc,
       fill = colour_unc,
