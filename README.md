@@ -14,8 +14,8 @@ Overall predictive performance is measured by a mean score (or loss),
 which decomposes into miscalibration, discrimination, and uncertainty
 components. The main focus is visualization of these distinct and
 complementary aspects in joint displays. See Dimitriadis, Gneiting,
-Jordan, Vogel (2023)
-[arXiv:2301.10803](https://arxiv.org/abs/2301.10803).
+Jordan, Vogel (2024)
+[doi:10.1016/j.ijforecast.2023.09.007](https://doi.org/10.1016/j.ijforecast.2023.09.007).
 
 ## Installation
 
