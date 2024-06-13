@@ -33,7 +33,7 @@ Imports:
     tidyselect,
     class,
     scales,
-    geomtextpath,
+    geomtextpath (>= 0.1.4),
     ggrepel
 Suggests: 
     testthat (>= 3.0.0)
